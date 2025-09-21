@@ -32,6 +32,7 @@
     ../sway.nix
     ../vnc.nix
     ../virt.nix
+    ../wacom.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
