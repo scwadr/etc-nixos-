@@ -18,7 +18,6 @@
     ../seekback-server.nix
     ./backup.nix
     ./bulletin.nix
-    ./jts-server.nix
     ./gtxr-vrsa.nix
     ./headscale.nix
     ../cosense-vector-search
