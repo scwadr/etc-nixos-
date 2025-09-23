@@ -80,7 +80,7 @@ if status is-interactive
   end
 end
 
-export PAGER=vimpager
+export PAGER=nvimpager
 
 function jpeg-to-pdf
   convert -density 300 -gravity Center $argv out.pdf

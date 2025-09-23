@@ -11,7 +11,7 @@
 
     ocamlPackages.ocaml-lsp
 
-    vimpager-latest
+    nvimpager
   ];
   programs.neovim = {
     # TODO: keep git-blame disabled on start
