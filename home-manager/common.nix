@@ -136,6 +136,8 @@
       cachix
 
       nixfmt-rfc-style
+
+      codex
     ]
     ++ (with pkgs.libsForQt5; [
       okular
