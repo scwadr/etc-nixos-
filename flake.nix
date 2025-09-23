@@ -33,6 +33,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
+    sync-pdf-viewer.url = "github:nyiyui/sync-pdf-viewer";
+    sync-pdf-viewer.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

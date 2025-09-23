@@ -15,7 +15,6 @@
     ../syncthing.nix
     ../autoUpgrade-https.nix
     ../hisame.nix
-    ./jks.nix
     ../seekback-server.nix
     ./backup.nix
     ./bulletin.nix
@@ -23,6 +22,7 @@
     ./gtxr-vrsa.nix
     ./headscale.nix
     ../cosense-vector-search
+    sync-pdf-viewer.nixosModules.default
   ];
 
   networking.firewall.allowedUDPPorts = [ 60410 ];
@@ -66,4 +66,21 @@
   virtualisation.oci-containers.backend = "docker";
 
   kiyurica.tailscale.enable = true;
+
+  services.sync-pdf-viewer = {
+    enable = true;
+  };
+  services.caddy = {
+    enable = true;
+    virtualHosts."sync-pdf-viewer.2kendon.ca" = {
+      extraConfig = ''
+        encode gzip
+        reverse_proxy http://localhost:${builtins.toString services.sync-pdf-viewer.port}
+      '';
+    };
+  };
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 }
