@@ -123,6 +123,7 @@
               "Dell Inc. DELL P2419H HNNGPM2"
               "Dell Inc. DELL P2419H HP5JPM2"
               "Dell Inc. DELL P2419H HS3KPM2"
+              "Dell Inc. DELL P2419H HNRGPM2"
             ]
         );
       };
