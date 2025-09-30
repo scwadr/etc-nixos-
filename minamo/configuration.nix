@@ -12,7 +12,7 @@
     ./impermanence.nix
     # ../secureboot.nix
     specialArgs.disko.nixosModules.disko
-    ../autoUpgrade-git.nix
+    # ../autoUpgrade-git.nix
   ];
 
   boot.initrd.systemd.enable = true;
@@ -86,5 +86,5 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  autoUpgrade.directFlake = true;
+  # autoUpgrade.directFlake = true;
 }
