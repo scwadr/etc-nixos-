@@ -12,7 +12,6 @@
     ./impermanence.nix
     # ../secureboot.nix
     specialArgs.disko.nixosModules.disko
-    ../doas.nix
   ];
 
   boot.initrd.systemd.enable = true;
@@ -74,4 +73,6 @@
 
   environment.shells = [ pkgs.fish ];
   programs.htop.enable = true;
+
+  security.sudo.wheelNeedsPassword = false;
 }
