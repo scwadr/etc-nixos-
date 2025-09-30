@@ -59,6 +59,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINEhH+5s0m+lBC898M/nrWREaDblRCPSpL6+9wkoZdel inaba@nyiyui.ca"
     ];
     homeMode = "770";
+    initialHashedPassword = "$y$j9T$LtCBAmfGN3xKX9.MpClEv0$DYzPDBmPGAD6h1w.ZxUaIvetNFFZjQftOm1VV5SxZ30";
   };
 
   nix.settings.trusted-users = [ "kiyurica" ];
