@@ -12,6 +12,7 @@
     ./impermanence.nix
     # ../secureboot.nix
     specialArgs.disko.nixosModules.disko
+    ../doas.nix
   ];
 
   boot.initrd.systemd.enable = true;
@@ -47,4 +48,29 @@
   virtualisation.xen = {
     enable = true;
   };
+
+  users.groups.kiyurica = { };
+  users.users.kiyurica = {
+    isNormalUser = true;
+    description = "Ken Shibata";
+    group = "kiyurica";
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINEhH+5s0m+lBC898M/nrWREaDblRCPSpL6+9wkoZdel inaba@nyiyui.ca"
+    ];
+    homeMode = "770";
+  };
+
+  nix.settings.trusted-users = [ "kiyurica" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  nix.settings.auto-optimise-store = true;
+
+  services.openssh.enable = true;
+  services.fail2ban.enable = true;
+
+  environment.shells = [ pkgs.fish ];
+  programs.htop.enable = true;
 }
