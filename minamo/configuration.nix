@@ -54,7 +54,7 @@
       "dom0=pvh" # Uses the PVH virtualisation mode for the Domain 0, instead of PV.
     ];
     dom0Resources = {
-      memory = 1024; # Only allocates 1GiB of memory to the Domain 0, with the rest of the system memory being freely available to other domains.
+      memory = 4096; # memory for Domain 0, with the rest of the system memory being freely available to other domains.
       maxVCPUs = 2; # Allows the Domain 0 to use, at most, two CPU cores.
     };
   };
