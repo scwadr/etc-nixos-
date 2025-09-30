@@ -10,9 +10,11 @@
   imports = [
     ./disko-config.nix
     ./impermanence.nix
-    ../secureboot.nix
+    # ../secureboot.nix
     specialArgs.disko.nixosModules.disko
   ];
+
+  boot.initrd.systemd.enable = true;
 
   boot.initrd.availableKernelModules = [
     "nvme"
