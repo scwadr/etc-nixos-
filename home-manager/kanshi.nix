@@ -102,6 +102,19 @@
               }
             ];
           }
+          {
+            profile.name = "wide-only";
+            profile.outputs = [
+              {
+                criteria = "${builtinDisplay}";
+                status = "disable";
+              }
+              {
+                criteria = "Samsung Electric Company LC34G55T H1AK500000";
+                position = "0,0";
+              }
+            ];
+          }
         ]
         ++ lib.lists.flatten (
           lib.lists.imap0
