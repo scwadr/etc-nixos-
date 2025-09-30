@@ -4,7 +4,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme1n1";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_2TB_S7M4NL0XC00751N";
         content = {
           type = "gpt";
           partitions = {
