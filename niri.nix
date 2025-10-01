@@ -16,7 +16,15 @@
       ];
     };
 
-    programs.uwsm.enable = true;
+    programs.uwsm = {
+      enable = true;
+      waylandCompositors.theniri = {
+        # becomes theniri-uwsm.desktop
+        binPath = "/run/current-system/sw/bin/niri";
+        prettyName = "Niri";
+        comment = "Niri-based session managed by UWSM";
+      };
+    };
     programs.niri.enable = true;
     environment.systemPackages = with pkgs; [ pkgs.libsForQt5.qt5.qtwayland ];
     services.systemd-lock-handler.enable = true;
