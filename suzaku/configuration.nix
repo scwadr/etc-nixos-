@@ -108,11 +108,6 @@
     mode = "400";
   };
 
-  kiyurica.networks.er605 = {
-    enable = true;
-    address = "10.9.0.97/32";
-  };
-
   autoUpgrade.directFlake = true;
 
   age.identityPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
