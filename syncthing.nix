@@ -32,8 +32,6 @@
           "makura"
           "minato"
           "yagoto"
-          "sekisho"
-          "sekisho2"
           "suzaku"
           "inaho"
         ];
@@ -49,9 +47,7 @@
         path = "/home/kiyurica/inaba/geofront";
         devices = [
           "makura"
-          "sekisho"
           "yagoto"
-          "sekisho2"
           "suzaku"
           "inaho"
           "Pixel 6a"
@@ -66,8 +62,6 @@
         path = "/home/kiyurica/inaba/hisame";
         devices = [
           "yagoto"
-          "sekisho"
-          "sekisho2"
           "suzaku"
         ];
       };
