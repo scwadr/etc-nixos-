@@ -100,7 +100,6 @@
           .direnv
           /hisame
           __pycache__
-          .direnv
         '';
     };
 }
