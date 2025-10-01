@@ -15,6 +15,22 @@
       "/etc/ssh"
     ];
     files = [ "/etc/machine-id" ];
+    users.kiyurica = {
+      directories = [
+        "inaba"
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
+        ".local/share/direnv"
+        ".local/share/fish"
+        ".local/share/nvim"
+        ".mozilla/firefox"
+        ".thunderbird"
+        ".config/syncthing"
+        ".config/sayonara"
+      ];
+    };
   };
 
   boot.initrd.systemd.services.swap-old-root = {

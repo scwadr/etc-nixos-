@@ -14,6 +14,11 @@
     specialArgs.disko.nixosModules.disko
     ../autoUpgrade-git.nix
     ../tpm.nix
+    ../common.nix
+    ../syncthing.nix
+    ../vlc.nix
+    ../adb.nix
+    ../virt.nix
   ];
 
   boot.initrd.systemd.enable = true;
@@ -33,7 +38,6 @@
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -46,33 +50,7 @@
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "America/New_York";
-
-  users.groups.kiyurica = { };
-  users.users.kiyurica = {
-    isNormalUser = true;
-    description = "Ken Shibata";
-    group = "kiyurica";
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINEhH+5s0m+lBC898M/nrWREaDblRCPSpL6+9wkoZdel inaba@nyiyui.ca"
-    ];
-    homeMode = "770";
-  };
   services.getty.autologinUser = "kiyurica";
-  users.users.root.hashedPassword = "$y$j9T$kEWnEW49.oTNiP3mW9hQu/$MTh5TvNot3F5Ae8lT/R4ErHLerCpYsCASXBM47nh6n.";
-
-  nix.settings.trusted-users = [ "kiyurica" ];
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nix.settings.auto-optimise-store = true;
-
-  services.openssh.enable = true;
-  services.fail2ban.enable = true;
-
-  environment.shells = [ pkgs.fish ];
-  programs.htop.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
 
