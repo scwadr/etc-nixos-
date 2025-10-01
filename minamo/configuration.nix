@@ -73,4 +73,5 @@
   services.udisks2.enable = true;
   kiyurica.desktop.niri.enable = true;
   kiyurica.greeter.gtkgreet.enable = true;
+  kiyurica.tailscale.enable = true;
 }
