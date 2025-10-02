@@ -76,21 +76,6 @@
               };
               Install.WantedBy = [ "graphical-session.target" ];
             };
-
-            # GTK input method configuration for fcitx
-            home.file.".gtkrc-2.0".text = ''
-              gtk-im-module="fcitx"
-            '';
-
-            xdg.configFile."gtk-3.0/settings.ini".text = ''
-              [Settings]
-              gtk-im-module=fcitx
-            '';
-
-            xdg.configFile."gtk-4.0/settings.ini".text = ''
-              [Settings]
-              gtk-im-module=fcitx
-            '';
           };
         }
       ];

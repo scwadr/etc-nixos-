@@ -97,7 +97,6 @@
         export INPUT_METHOD=fcitx
 
         export QT_IM_MODULE=fcitx
-        export GTK_IM_MODULE=fcitx
         export XMODIFIERS=@im=fcitx
         export XIM_SERVERS=fcitx
         exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP &

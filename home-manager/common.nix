@@ -48,7 +48,6 @@
       set fish_greeting
       ${builtins.readFile ./profile.sh}
       export QT_IM_MODULE=fcitx
-      export GTK_IM_MODULE=fcitx
       export XMODIFIERS=@im=fcitx
     '';
     plugins = [
@@ -68,7 +67,6 @@
     initExtra = "source ~/inaba/dots/sh/sh.sh";
     bashrcExtra = ''
       export QT_IM_MODULE=fcitx
-      export GTK_IM_MODULE=fcitx
       export XMODIFIERS=@im=fcitx
     '';
   };
