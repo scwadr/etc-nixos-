@@ -10,7 +10,12 @@
         {
           programs.niri.settings = {
             spawn-at-startup = [
-              { argv = ["uwsm" "finalize"]; }
+              {
+                argv = [
+                  "uwsm"
+                  "finalize"
+                ];
+              }
             ];
             binds = {
               "Mod+Return".action.spawn = [
