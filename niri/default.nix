@@ -11,7 +11,6 @@
     ../home-manager.nix
     ./uwsm.nix
     ./set-default.nix
-    niri.nixosModules.niri
   ];
 
   options.kiyurica.desktop.niri.enable = lib.mkEnableOption "a Niri-based desktop environment";
@@ -23,217 +22,14 @@
   };
 
   config = lib.mkIf config.kiyurica.desktop.niri.enable {
-    programs.niri = {
-      enable = true;
-      settings = {
-        input = {
-          keyboard = {
-            xkb.options = "compose:caps";
-            repeat-delay = 600;
-            repeat-rate = 25;
-            track-layout = "global";
-          };
-        };
-        screenshot-path = "~/.cache/screenshot.png";
-        layout = {
-          gaps = 16;
-          struts = {
-            left = 16;
-            right = 16;
-            top = 16;
-            bottom = 16;
-          };
-          focus-ring = {
-            width = 2;
-            active-color = "rgb(127 200 255)";
-            inactive-color = "rgb(80 80 80)";
-          };
-          border.off = true;
-          preset-column-widths = true;
-          default-column-width.proportion = 0.4;
-          center-focused-column = "never";
-        };
-        cursor = {
-          xcursor-theme = "default";
-          xcursor-size = 16;
-        };
-        environment = {
-          QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-          QT_QPA_PLATFORM = "wayland";
-          QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-          GDK_BACKEND = "wayland";
-          GBM_BACKEND = "nvidia-drm";
-          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-          MOZ_ENABLE_WAYLAND = "1";
-          WLR_NO_HARDWARE_CURSORS = "1";
-          INPUT_METHOD = "fcitx";
-          QT_IM_MODULE = "fcitx";
-          XMODIFIERS = "@im fcitx";
-          XIM_SERVERS = "fcitx";
-        };
-        animations = {
-          slowdown = 1.0;
-          workspace-switch.spring = {
-            damping-ratio = 1.0;
-            epsilon = 0.0001;
-            stiffness = 1000;
-          };
-          horizontal-view-movement.spring = {
-            damping-ratio = 1.0;
-            epsilon = 0.0001;
-            stiffness = 800;
-          };
-          window-open = {
-            duration-ms = 150;
-            curve = "ease-out-expo";
-          };
-          config-notification-open-close.spring = {
-            damping-ratio = 0.6;
-            epsilon = 0.001;
-            stiffness = 1000;
-          };
-        };
-        binds = {
-          "Mod+Shift+Slash".action.show-hotkey-overlay = true;
-          "XF86MonBrightnessUp".action.spawn = [
-            "light"
-            "-A"
-            "1"
-          ];
-          "XF86MonBrightnessDown".action.spawn = [
-            "fish"
-            "--command=if [ $(light) -le 1 ]; then; light -S 1; else; light -U 1; end"
-          ];
-          "XF86AudioRaiseVolume".action.spawn = [
-            "pactl"
-            "set-sink-volume"
-            "@DEFAULT_SINK@"
-            "+1%"
-          ];
-          "XF86AudioLowerVolume".action.spawn = [
-            "pactl"
-            "set-sink-volume"
-            "@DEFAULT_SINK@"
-            "-1%"
-          ];
-          "XF86AudioMute".action.spawn = [
-            "pactl"
-            "set-sink-mute"
-            "@DEFAULT_SINK@"
-            "toggle"
-          ];
-          "XF86AudioPlay".action.spawn = [
-            "playerctl"
-            "play-pause"
-          ];
-          "Mod+Tab".action.spawn = [
-            "playerctl"
-            "play-pause"
-          ];
-          "Mod+Shift+Q".action.close-window = true;
-          "Mod+H".action.focus-column-left = true;
-          "Mod+J".action.focus-window-down = true;
-          "Mod+K".action.focus-window-up = true;
-          "Mod+L".action.focus-column-right = true;
-          "Mod+Shift+H".action.move-column-left = true;
-          "Mod+Shift+J".action.move-window-down = true;
-          "Mod+Shift+K".action.move-window-up = true;
-          "Mod+Shift+L".action.move-column-right = true;
-          "Mod+U".action.focus-workspace-down = true;
-          "Mod+I".action.focus-workspace-up = true;
-          "Mod+Shift+U".action.move-column-to-workspace-down = true;
-          "Mod+Shift+I".action.move-column-to-workspace-up = true;
-          "Mod+Home".action.focus-column-first = true;
-          "Mod+End".action.focus-column-last = true;
-          "Mod+Shift+Home".action.move-column-to-first = true;
-          "Mod+Shift+End".action.move-column-to-last = true;
-          "Mod+Ctrl+H".action.focus-monitor-left = true;
-          "Mod+Ctrl+J".action.focus-monitor-down = true;
-          "Mod+Ctrl+K".action.focus-monitor-up = true;
-          "Mod+Ctrl+L".action.focus-monitor-right = true;
-          "Mod+Shift+Ctrl+H".action.move-column-to-monitor-left = true;
-          "Mod+Shift+Ctrl+J".action.move-column-to-monitor-down = true;
-          "Mod+Shift+Ctrl+K".action.move-column-to-monitor-up = true;
-          "Mod+Shift+Ctrl+L".action.move-column-to-monitor-right = true;
-          "Mod+Alt+Shift+Page_Down".action.move-workspace-down = true;
-          "Mod+Alt+Shift+Page_Up".action.move-workspace-up = true;
-          "Mod+WheelScrollDown" = {
-            cooldown-ms = 150;
-            action.focus-workspace-down = true;
-          };
-          "Mod+WheelScrollUp" = {
-            cooldown-ms = 150;
-            action.focus-workspace-up = true;
-          };
-          "Mod+Shift+WheelScrollDown" = {
-            cooldown-ms = 150;
-            action.move-column-to-workspace-down = true;
-          };
-          "Mod+Shift+WheelScrollUp" = {
-            cooldown-ms = 150;
-            action.move-column-to-workspace-up = true;
-          };
-          "Mod+WheelScrollRight".action.focus-column-right = true;
-          "Mod+WheelScrollLeft".action.focus-column-left = true;
-          "Mod+Shift+WheelScrollRight".action.move-column-right = true;
-          "Mod+Shift+WheelScrollLeft".action.move-column-left = true;
-          "Mod+1".action.focus-workspace = 1;
-          "Mod+2".action.focus-workspace = 2;
-          "Mod+3".action.focus-workspace = 3;
-          "Mod+4".action.focus-workspace = 4;
-          "Mod+5".action.focus-workspace = 5;
-          "Mod+6".action.focus-workspace = 6;
-          "Mod+7".action.focus-workspace = 7;
-          "Mod+8".action.focus-workspace = 8;
-          "Mod+9".action.focus-workspace = 9;
-          "Mod+Shift+1".action.move-column-to-workspace = 1;
-          "Mod+Shift+2".action.move-column-to-workspace = 2;
-          "Mod+Shift+3".action.move-column-to-workspace = 3;
-          "Mod+Shift+4".action.move-column-to-workspace = 4;
-          "Mod+Shift+5".action.move-column-to-workspace = 5;
-          "Mod+Shift+6".action.move-column-to-workspace = 6;
-          "Mod+Shift+7".action.move-column-to-workspace = 7;
-          "Mod+Shift+8".action.move-column-to-workspace = 8;
-          "Mod+Shift+9".action.move-column-to-workspace = 9;
-          "Mod+Comma".action.consume-window-into-column = true;
-          "Mod+Period".action.expel-window-from-column = true;
-          "Mod+BracketLeft".action.consume-or-expel-window-left = true;
-          "Mod+BracketRight".action.consume-or-expel-window-right = true;
-          "Mod+R".action.switch-preset-column-width = true;
-          "Mod+F".action.maximize-column = true;
-          "Mod+Shift+F".action.fullscreen-window = true;
-          "Mod+C".action.center-column = true;
-          "Mod+Minus".action.set-column-width = "-10%";
-          "Mod+Equal".action.set-column-width = "+10%";
-          "Mod+Shift+Minus".action.set-window-height = "-10%";
-          "Mod+Shift+Equal".action.set-window-height = "+10%";
-          "Print".action.screenshot = true;
-          "Shift+Print".action.screenshot-screen = true;
-          "Alt+Print".action.screenshot-window = true;
-          "Mod+Shift+E".action.quit = true;
-          "Mod+Shift+P".action.power-off-monitors = true;
-        };
-        window-rules = [
-          {
-            draw-border-with-background = false;
-          }
-          {
-            matches = [ { app-id = "^org\\.keepassxc\\.KeePassXC$"; } ];
-            block-out-from = "screencast";
-          }
-        ];
-        prefer-no-csd = true;
-      };
-    };
     home-manager.users.kiyurica = {
       imports = [
+        niri.homeModules.niri
         ../home-manager/graphical.nix
+        ../home-manager/fuzzel.nix
+        ../home-manager/wlsunset.nix
+        ../home-manager/wayland.nix
         {
-          imports = [
-            ../home-manager/fuzzel.nix
-            ../home-manager/wlsunset.nix
-            ../home-manager/wayland.nix
-          ];
           config = {
             systemd.user.services.swaybg = {
               Unit = {
@@ -261,18 +57,214 @@
               };
               Install.WantedBy = [ "graphical-session.target" ];
             };
-            config.programs.waybar.settings.mainBar =
-              lib.mkIf config.kiyurica.graphical.onScreenKeyboard.enable
-                {
-                  modules-left = [
-                    "niri/workspaces"
-                    "niri/window"
-                  ];
+            programs.waybar.settings.mainBar = {
+              modules-left = [
+                "niri/workspaces"
+                "niri/window"
+              ];
 
-                  "niri/workspaces" = {
-                    format = "{index}";
+              "niri/workspaces" = {
+                format = "{index}";
+              };
+            };
+            programs.niri = {
+              enable = true;
+              settings = {
+                input = {
+                  keyboard = {
+                    xkb.options = "compose:caps";
+                    repeat-delay = 600;
+                    repeat-rate = 25;
+                    track-layout = "global";
                   };
                 };
+                screenshot-path = "~/.cache/screenshot.png";
+                layout = {
+                  gaps = 16;
+                  struts = {
+                    left = 16;
+                    right = 16;
+                    top = 16;
+                    bottom = 16;
+                  };
+                  focus-ring = {
+                    width = 2;
+                    active.color = "rgb(127 200 255)";
+                    inactive.color = "rgb(80 80 80)";
+                  };
+                  border.enable = false;
+                  default-column-width.proportion = 0.4;
+                  center-focused-column = "never";
+                };
+                cursor.size = 16;
+                environment = {
+                  QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+                  QT_QPA_PLATFORM = "wayland";
+                  QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+                  GDK_BACKEND = "wayland";
+                  GBM_BACKEND = "nvidia-drm";
+                  __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+                  MOZ_ENABLE_WAYLAND = "1";
+                  WLR_NO_HARDWARE_CURSORS = "1";
+                  INPUT_METHOD = "fcitx";
+                  QT_IM_MODULE = "fcitx";
+                  XMODIFIERS = "@im fcitx";
+                  XIM_SERVERS = "fcitx";
+                };
+                animations = {
+                  slowdown = 1.0;
+                  workspace-switch = {
+                    kind.spring.damping-ratio = 1.0;
+                    kind.spring.epsilon = 0.0001;
+                    kind.spring.stiffness = 1000;
+                  };
+                  horizontal-view-movement = {
+                    kind.spring.damping-ratio = 1.0;
+                    kind.spring.epsilon = 0.0001;
+                    kind.spring.stiffness = 800;
+                  };
+                  window-open = {
+                    kind.easing.duration-ms = 150;
+                    kind.easing.curve = "ease-out-expo";
+                  };
+                  config-notification-open-close = {
+                    kind.spring.damping-ratio = 0.6;
+                    kind.spring.epsilon = 0.001;
+                    kind.spring.stiffness = 1000;
+                  };
+                };
+                binds = {
+                  "Mod+Shift+Slash".action.show-hotkey-overlay = true;
+                  "XF86MonBrightnessUp".action.spawn = [
+                    "light"
+                    "-A"
+                    "1"
+                  ];
+                  "XF86MonBrightnessDown".action.spawn = [
+                    "fish"
+                    "--command=if [ $(light) -le 1 ]; then; light -S 1; else; light -U 1; end"
+                  ];
+                  "XF86AudioRaiseVolume".action.spawn = [
+                    "pactl"
+                    "set-sink-volume"
+                    "@DEFAULT_SINK@"
+                    "+1%"
+                  ];
+                  "XF86AudioLowerVolume".action.spawn = [
+                    "pactl"
+                    "set-sink-volume"
+                    "@DEFAULT_SINK@"
+                    "-1%"
+                  ];
+                  "XF86AudioMute".action.spawn = [
+                    "pactl"
+                    "set-sink-mute"
+                    "@DEFAULT_SINK@"
+                    "toggle"
+                  ];
+                  "XF86AudioPlay".action.spawn = [
+                    "playerctl"
+                    "play-pause"
+                  ];
+                  "Mod+Tab".action.spawn = [
+                    "playerctl"
+                    "play-pause"
+                  ];
+                  "Mod+Shift+Q".action.close-window = true;
+                  "Mod+H".action.focus-column-left = true;
+                  "Mod+J".action.focus-window-down = true;
+                  "Mod+K".action.focus-window-up = true;
+                  "Mod+L".action.focus-column-right = true;
+                  "Mod+Shift+H".action.move-column-left = true;
+                  "Mod+Shift+J".action.move-window-down = true;
+                  "Mod+Shift+K".action.move-window-up = true;
+                  "Mod+Shift+L".action.move-column-right = true;
+                  "Mod+U".action.focus-workspace-down = true;
+                  "Mod+I".action.focus-workspace-up = true;
+                  "Mod+Shift+U".action.move-column-to-workspace-down = true;
+                  "Mod+Shift+I".action.move-column-to-workspace-up = true;
+                  "Mod+Home".action.focus-column-first = true;
+                  "Mod+End".action.focus-column-last = true;
+                  "Mod+Shift+Home".action.move-column-to-first = true;
+                  "Mod+Shift+End".action.move-column-to-last = true;
+                  "Mod+Ctrl+H".action.focus-monitor-left = true;
+                  "Mod+Ctrl+J".action.focus-monitor-down = true;
+                  "Mod+Ctrl+K".action.focus-monitor-up = true;
+                  "Mod+Ctrl+L".action.focus-monitor-right = true;
+                  "Mod+Shift+Ctrl+H".action.move-column-to-monitor-left = true;
+                  "Mod+Shift+Ctrl+J".action.move-column-to-monitor-down = true;
+                  "Mod+Shift+Ctrl+K".action.move-column-to-monitor-up = true;
+                  "Mod+Shift+Ctrl+L".action.move-column-to-monitor-right = true;
+                  "Mod+Alt+Shift+Page_Down".action.move-workspace-down = true;
+                  "Mod+Alt+Shift+Page_Up".action.move-workspace-up = true;
+                  "Mod+WheelScrollDown" = {
+                    cooldown-ms = 150;
+                    action.focus-workspace-down = true;
+                  };
+                  "Mod+WheelScrollUp" = {
+                    cooldown-ms = 150;
+                    action.focus-workspace-up = true;
+                  };
+                  "Mod+Shift+WheelScrollDown" = {
+                    cooldown-ms = 150;
+                    action.move-column-to-workspace-down = true;
+                  };
+                  "Mod+Shift+WheelScrollUp" = {
+                    cooldown-ms = 150;
+                    action.move-column-to-workspace-up = true;
+                  };
+                  "Mod+WheelScrollRight".action.focus-column-right = true;
+                  "Mod+WheelScrollLeft".action.focus-column-left = true;
+                  "Mod+Shift+WheelScrollRight".action.move-column-right = true;
+                  "Mod+Shift+WheelScrollLeft".action.move-column-left = true;
+                  "Mod+1".action.focus-workspace = 1;
+                  "Mod+2".action.focus-workspace = 2;
+                  "Mod+3".action.focus-workspace = 3;
+                  "Mod+4".action.focus-workspace = 4;
+                  "Mod+5".action.focus-workspace = 5;
+                  "Mod+6".action.focus-workspace = 6;
+                  "Mod+7".action.focus-workspace = 7;
+                  "Mod+8".action.focus-workspace = 8;
+                  "Mod+9".action.focus-workspace = 9;
+                  "Mod+Shift+1".action.move-column-to-workspace = 1;
+                  "Mod+Shift+2".action.move-column-to-workspace = 2;
+                  "Mod+Shift+3".action.move-column-to-workspace = 3;
+                  "Mod+Shift+4".action.move-column-to-workspace = 4;
+                  "Mod+Shift+5".action.move-column-to-workspace = 5;
+                  "Mod+Shift+6".action.move-column-to-workspace = 6;
+                  "Mod+Shift+7".action.move-column-to-workspace = 7;
+                  "Mod+Shift+8".action.move-column-to-workspace = 8;
+                  "Mod+Shift+9".action.move-column-to-workspace = 9;
+                  "Mod+Comma".action.consume-window-into-column = true;
+                  "Mod+Period".action.expel-window-from-column = true;
+                  "Mod+BracketLeft".action.consume-or-expel-window-left = true;
+                  "Mod+BracketRight".action.consume-or-expel-window-right = true;
+                  "Mod+R".action.switch-preset-column-width = true;
+                  "Mod+F".action.maximize-column = true;
+                  "Mod+Shift+F".action.fullscreen-window = true;
+                  "Mod+C".action.center-column = true;
+                  "Mod+Minus".action.set-column-width = "-10%";
+                  "Mod+Equal".action.set-column-width = "+10%";
+                  "Mod+Shift+Minus".action.set-window-height = "-10%";
+                  "Mod+Shift+Equal".action.set-window-height = "+10%";
+                  "Print".action.screenshot = true;
+                  "Shift+Print".action.screenshot-screen = true;
+                  "Alt+Print".action.screenshot-window = true;
+                  "Mod+Shift+E".action.quit = true;
+                  "Mod+Shift+P".action.power-off-monitors = true;
+                };
+                window-rules = [
+                  {
+                    draw-border-with-background = false;
+                  }
+                  {
+                    matches = [ { app-id = "^org\\.keepassxc\\.KeePassXC$"; } ];
+                    block-out-from = "screencast";
+                  }
+                ];
+                prefer-no-csd = true;
+              };
+            };
           };
         }
       ];
