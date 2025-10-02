@@ -57,18 +57,8 @@ animations {
     config-notification-open-close { spring damping-ratio=0.600000 epsilon=0.001000 stiffness=1000; }
 }
 
-output "HDMI-A-2" {
-  mode "3840x2160@30.000"
-  scale 2.0
-}
-
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
-
-    Mod+Return { spawn "foot"; }
-    Mod+D { spawn "fuzzel"; }
-    Mod+Shift+Return { spawn "firefox"; }
-    Super+Alt+L { spawn "swaylock"; }
 
     XF86MonBrightnessUp { spawn "light" "-A" "1"; }
     XF86MonBrightnessDown { spawn "fish" "--command='if [ $(light) -le 1 ]; then; light -S 1; else; light -U 1; end'"; }
@@ -233,11 +223,6 @@ binds {
 
 window-rule {
     draw-border-with-background false
-}
-
-window-rule {
-    match app-id="foot"
-    open-maximized true
 }
 
 window-rule {
