@@ -107,16 +107,6 @@
       config = rec {
         inherit modifier;
         terminal = "footclient";
-        startup = [
-          {
-            command = "${pkgs.firefox}/bin/firefox";
-            always = true;
-          }
-          {
-            command = "${pkgs.thunderbird}/bin/thunderbird";
-            always = true;
-          }
-        ];
         keybindings = lib.mkOptionDefault {
           # use wev to find pressed keys
           "XF86AudioPlay" = "exec playerctl play-pause";

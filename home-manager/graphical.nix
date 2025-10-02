@@ -279,5 +279,14 @@ in
         image = "${../wallpapers/shibuya-gmo.jpg}";
       };
     };
+
+    xdg.autostart = {
+      enable = true;
+      readOnly = true;
+      entries = [
+        "${config.home.homeDirectory}/.nix-profile/share/applications/firefox.desktop"
+        "${config.home.homeDirectory}/.nix-profile/share/applications/thunderbird.desktop"
+      ];
+    };
   };
 }
