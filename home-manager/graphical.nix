@@ -52,6 +52,14 @@ in
       default = null;
       description = "waybar: path to ICS URL for the next event module";
     };
+  options.kiyurica.horizontal =
+    with lib;
+    with types;
+    mkOption {
+      type = bool;
+      default = true;
+      description = "waybar: horizontal (true) or vertical (false)"; # TODO: generalize to left right top bottom
+    };
 
   config = {
     i18n.inputMethod = {
@@ -97,8 +105,12 @@ in
         {
           mainBar = {
             layer = "top";
-            position = lib.mkDefault "bottom";
-            height = 20;
+            position = lib.mkMerge [
+              (lib.mkIf cfg.horizontal "bottom")
+              (lib.mkIf (!cfg.horizontal) "right")
+            ];
+            height = lib.mkIf cfg.horizontal 20;
+            width = lib.mkIf (!cfg.horizontal) 20;
             modules-right =
               (if cfg.icsUrlPath != null then [ "custom/next-event" ] else [ ])
               ++ [

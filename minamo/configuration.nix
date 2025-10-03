@@ -101,15 +101,16 @@
     { pkgs, ... }:
     {
       programs.waybar.settings.mainBar = {
-        position = "right";
-        "niri/window".rotate = 90;
-        "clock".rotate = 90;
-        "network".rotate = 90;
-        "mpris".rotate = 90;
+        "niri/window".rotate = 270;
+        "custom/next-event".rotate = 270;
+        "clock".rotate = 270;
+        "network".rotate = 270;
+        "mpris".rotate = 270;
       };
       kiyurica.services.seekback.enable = true;
       kiyurica.services.log-window-titles.enable = true;
       kiyurica.icsUrlPath = config.age.secrets.icsUrlPath.path;
+      kiyurica.horizontal = false;
     };
 
   age.secrets.icsUrlPath = {
