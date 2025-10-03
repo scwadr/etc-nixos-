@@ -20,6 +20,7 @@
     type = lib.types.bool;
     description = "set this as the default desktop environment";
   };
+  programs.niri.enable = true; # required for display managers (so they can run niri-session)
 
   config = lib.mkIf config.kiyurica.desktop.niri.enable {
     home-manager.users.kiyurica = {
