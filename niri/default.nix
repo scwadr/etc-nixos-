@@ -138,6 +138,9 @@
                   };
                 };
                 binds = {
+                  "Mod+Return".action.spawn = [ "foot" ];
+                  "Mod+Shift+Return".action.spawn = [ "firefox" ];
+                  "Mod+Alt+Return".action.spawn = [ "rnote" ];
                   "Mod+Shift+Slash".action.show-hotkey-overlay = true;
                   "XF86MonBrightnessUp".action.spawn = [
                     "light"
