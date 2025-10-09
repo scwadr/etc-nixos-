@@ -137,6 +137,8 @@
       nixfmt-rfc-style
 
       codex
+
+      zathura
     ]
     ++ (with pkgs.libsForQt5; [
       okular
