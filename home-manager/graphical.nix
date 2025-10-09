@@ -71,7 +71,7 @@ in
     with types;
     mkOption {
       type = path;
-      default = ../wallpapers/yamamoto-brdg.jpg;
+      default = ../wallpapers/c11-207.jpg;
       description = "Path to the background/wallpaper image file";
     };
 
