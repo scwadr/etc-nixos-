@@ -12,9 +12,6 @@
     ocamlPackages.ocaml-lsp
 
     nvimpager
-
-    zathura # PDF viewer
-    pkgs.texlive.combined.scheme-full
   ];
   programs.neovim = {
     # TODO: keep git-blame disabled on start
@@ -41,7 +38,6 @@
       copilot-vim
       dart-vim-plugin
       cornelis
-      vimtex
     ];
   };
 }
