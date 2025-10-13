@@ -92,6 +92,7 @@
                 enable = true;
                 settings = {
                   input = {
+                    focus-follows-mouse.enable = true;
                     keyboard = {
                       xkb.options = "compose:caps";
                       repeat-delay = 600;
