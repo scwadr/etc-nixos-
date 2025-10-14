@@ -30,7 +30,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-  boot.blacklistedModules = [ "i915" ];
+  boot.blacklistedKernelModules = [ "i915" ];
 
   hardware.graphics = {
     enable = true;
