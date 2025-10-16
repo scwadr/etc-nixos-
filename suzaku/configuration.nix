@@ -75,7 +75,6 @@
     { pkgs, ... }:
     {
       imports = [
-        ../home-manager/activitywatch.nix
         ../home-manager/joystick-as-mouse.nix
       ];
       kiyurica.hasBacklight = true;
