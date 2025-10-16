@@ -140,8 +140,6 @@
     address = "10.42.0.9/32";
   };
 
-  kiyurica.programs.claude-code.enable = true;
-
   kiyurica.tailscale.enable = true;
 
   kiyurica.kdeconnect.enable = true;

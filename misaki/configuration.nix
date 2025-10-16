@@ -107,8 +107,6 @@
   #       For more information, contact Positon or consult their website:
   #       https://positon.xyz/docs/
 
-  kiyurica.programs.claude-code.enable = true;
-
   kiyurica.tailscale.enable = true;
 
   fileSystems."/home/kiyurica/inaba" = {
