@@ -140,6 +140,7 @@
       codex
 
       zathura
+      lyx # goated TeX editor
     ]
     ++ (with pkgs.libsForQt5; [
       okular
