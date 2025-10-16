@@ -49,8 +49,6 @@
     shellInit = ''
       set fish_greeting
       ${builtins.readFile ./profile.sh}
-      export QT_IM_MODULE=fcitx
-      export XMODIFIERS=@im=fcitx
     '';
     plugins = [
       {
@@ -64,34 +62,17 @@
       }
     ];
   };
-  programs.bash = {
-    historySize = 20000;
-    initExtra = "source ~/inaba/dots/sh/sh.sh";
-    bashrcExtra = ''
-      export QT_IM_MODULE=fcitx
-      export XMODIFIERS=@im=fcitx
-    '';
+  programs.foot = {
+    enable = true;
+    server.enable = true;
+    settings.colors.alpha = 0.5;
+    settings.colors.background = "000000";
+    settings.main.shell = "fish";
+    settings.main.font = "JetBrainsMono:size=12,NotoColorEmoji:size=12,hack:size=12";
   };
-  programs.foot =
-    let
-      shpoolShell = pkgs.writeShellScript "shpool-shell.sh" ''
-        shpool -d attach $(shuf -n 1 ${./shpool-names.txt}) -c fish
-        # TODO: select a non-preexsiting name
-      '';
-    in
-    {
-      enable = true;
-      server.enable = true;
-      settings.colors.alpha = 0.5;
-      settings.colors.background = "000000";
-      settings.main.shell = "fish";
-      settings.main.font = "JetBrainsMono:size=12,NotoColorEmoji:size=12,hack:size=12";
-    };
   home.packages =
     with pkgs;
     [
-      shpool
-
       nmap
       git-filter-repo
 
@@ -105,9 +86,7 @@
       darktable
       imagemagick
       libreoffice-qt
-      anki
       notify-desktop
-      audacity
       pdftk
       pdfchain # GUI for pdftk
       qrencode
@@ -115,7 +94,6 @@
       poppler_utils
       meld
       age
-      xournalpp
       rnote
 
       libsixel # for img2sixel for images in terminal
@@ -129,11 +107,8 @@
 
       calc
 
-      remmina # for RDP from hinanawi to minato
-      freerdp3 # RDP (remmina alternative)
+      freerdp3 # RDP
       thunderbird
-
-      cachix
 
       nixfmt-rfc-style
 
@@ -143,7 +118,6 @@
       lyx # goated TeX editor
     ]
     ++ (with pkgs.libsForQt5; [
-      okular
       gwenview
       kate
       ctags
@@ -181,12 +155,6 @@
     enable = true;
     enableZshIntegration = false;
     nix-direnv.enable = true;
-  };
-  programs.ssh = {
-    extraConfig = ''
-      Host mcpt.ca
-        SetEnv TERM=xterm-256color
-    '';
   };
 
   services.gnome-keyring = {
