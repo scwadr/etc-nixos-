@@ -93,9 +93,6 @@
   home-manager.users.kiyurica =
     { pkgs, ... }:
     {
-      imports = [
-        ../home-manager/joystick-as-mouse.nix
-      ];
       # gamma
       services.wlsunset.temperature.night = 4000;
 

@@ -74,9 +74,6 @@
   home-manager.users.kiyurica =
     { pkgs, ... }:
     {
-      imports = [
-        ../home-manager/joystick-as-mouse.nix
-      ];
       kiyurica.hasBacklight = true;
       kiyurica.services.seekback.enable = true;
       kiyurica.services.log-window-titles.enable = true;
