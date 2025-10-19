@@ -107,7 +107,7 @@
       kiyurica.waybarPosition = "right";
       programs.waybar.style = ''
         window#waybar {
-          background-color: rgba(0, 0, 0, 1) !important;
+          background-color: rgba(0, 0, 0, 1);
         }
       '';
     };
