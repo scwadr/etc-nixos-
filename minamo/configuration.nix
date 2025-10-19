@@ -99,12 +99,17 @@
   };
 
   home-manager.users.kiyurica =
-    { pkgs, ... }:
+    { ... }:
     {
       kiyurica.services.seekback.enable = true;
       kiyurica.services.log-window-titles.enable = true;
       kiyurica.icsUrlPath = config.age.secrets.icsUrlPath.path;
       kiyurica.waybarPosition = "right";
+      programs.waybar.style = ''
+        window#waybar {
+          background-color: rgba(0, 0, 0, 1) !important;
+        }
+      '';
     };
 
   age.secrets.icsUrlPath = {
