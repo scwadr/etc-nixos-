@@ -20,6 +20,8 @@ alias f1='grep -nrH --exclude-dir node_modules --exclude-dir venv'
 alias f0='grep -nrHo --exclude-dir node_modules --exclude-dir venv'
 alias v=nvim
 
+alias z=zathura-sandbox
+
 alias :wq='echo too much vi!'
 alias :q='echo too much vi!'
 
