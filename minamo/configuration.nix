@@ -66,7 +66,6 @@
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "America/New_York";
-  services.getty.autologinUser = "kiyurica";
 
   autoUpgrade.directFlake = true;
   boot.initrd.systemd.emergencyAccess = true;
