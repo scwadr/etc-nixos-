@@ -14,16 +14,16 @@ let
   # Script to apply power saving settings when on battery
   batteryPowerScript = pkgs.writeShellScript "battery-power" ''
     ${config.boot.kernelPackages.x86_energy_perf_policy}/bin/x86_energy_perf_policy powersave
-    echo powersave > /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor || true
-    echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo || true
+    echo powersave > /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+    echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
     echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
   '';
 
   # Script to apply performance settings when on AC power
   acPowerScript = pkgs.writeShellScript "ac-power" ''
     ${config.boot.kernelPackages.x86_energy_perf_policy}/bin/x86_energy_perf_policy performance
-    echo performance > /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor || true
-    echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo || true
+    echo performance > /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+    echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
     echo 500 > /proc/sys/vm/dirty_writeback_centisecs
   '';
 
