@@ -18,5 +18,6 @@
     ./synergy.nix
     ./aiden.nix
     ./nerd-dictation
+    ./gatech-vpn.nix
   ];
 }
