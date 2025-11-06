@@ -83,12 +83,10 @@
         User = config.kiyurica.gatech-vpn.user;
       };
       script = ''
-        # 1st line is password
-        # 2nd line is 2nd factor authn - choices are pushN, phoneN, and a TOTP code
-        export SECOND_FACTOR_PROMPT='Georgia Tech VPN: 2nd factor'
+        set -eu
+
         export PASSWORD_FILE_PATH="$CREDENTIALS_DIRECTORY/password"
-        export SECOND_FACTOR="$(systemd-ask-password "$SECOND_FACTOR_PROMPT")"
-        { cat "$PASSWORD_FILE_PATH"; echo "$SECOND_FACTOR"; } | \
+        { cat "$PASSWORD_FILE_PATH"; echo 'push1'; } | \
         openconnect \
           --verbose \
           --protocol=gp \
