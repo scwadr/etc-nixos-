@@ -90,7 +90,7 @@
         LoadCredentialEncrypted = "password:${config.kiyurica.gatech-vpn.password-file}";
         User = config.kiyurica.gatech-vpn.user;
 
-        CapabilityBoundingSet = "";
+        # CapabilityBoundingSet = "";
         RestrictNamespaces = "yes";
         RestrictAddressFamilies = [
           "AF_UNIX"
@@ -113,7 +113,7 @@
         ProtectKernelModules = "true";
         ProtectKernelTunables = "true";
         ProtectProc = "invisible";
-        ProtectSystem = "strict";
+        # ProtectSystem = "strict";
         RemoveIPC = "true";
         NoNewPrivileges = "true";
       };
