@@ -131,5 +131,5 @@
   programs.singularity.enable = true;
   programs.singularity.package = pkgs.apptainer;
 
-  kiyurica.nerd-dictation.enable = true;
+  # kiyurica.nerd-dictation.enable = true;
 }
