@@ -99,20 +99,17 @@
         ];
         SystemCallFilter = [
           "@system-service"
-          "@network-io"
-          "@pkey"
-          "@tls"
         ];
         # PrivateDevices = "true";
         PrivateTmp = true;
-        ProtectClock = "true";
-        ProtectControlGroups = "true";
+        # ProtectClock = "true";
+        # ProtectControlGroups = "true";
         ProtectHome = "true";
         ProtectHostname = "true";
         ProtectKernelLogs = "true";
         ProtectKernelModules = "true";
         ProtectKernelTunables = "true";
-        ProtectProc = "invisible";
+        # ProtectProc = "invisible";
         # ProtectSystem = "strict";
         RemoveIPC = "true";
         NoNewPrivileges = "true";
