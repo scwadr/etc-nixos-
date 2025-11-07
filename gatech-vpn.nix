@@ -78,13 +78,13 @@
         openconnect
         ocproxy
       ];
-      # confinement = {
-      #   enable = true;
-      #   packages = with pkgs; [
-      #     openconnect
-      #     ocproxy
-      #   ];
-      # };
+      confinement = {
+        enable = true;
+        packages = with pkgs; [
+          openconnect
+          ocproxy
+        ];
+      };
       enableStrictShellChecks = true;
       serviceConfig = {
         LoadCredentialEncrypted = "password:${config.kiyurica.gatech-vpn.password-file}";
