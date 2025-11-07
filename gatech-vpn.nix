@@ -91,15 +91,15 @@
         User = config.kiyurica.gatech-vpn.user;
 
         # CapabilityBoundingSet = "";
-        RestrictNamespaces = "yes";
-        RestrictAddressFamilies = [
-          "AF_UNIX"
-          "AF_INET"
-          "AF_INET6"
-        ];
-        SystemCallFilter = [
-          "@system-service"
-        ];
+        # RestrictNamespaces = "yes";
+        # RestrictAddressFamilies = [
+        #   "AF_UNIX"
+        #   "AF_INET"
+        #   "AF_INET6"
+        # ];
+        # SystemCallFilter = [
+        #   "@system-service"
+        # ];
         # PrivateDevices = "true";
         # PrivateTmp = true;
         # ProtectClock = "true";
