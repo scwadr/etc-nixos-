@@ -101,18 +101,18 @@
           "@system-service"
         ];
         # PrivateDevices = "true";
-        PrivateTmp = true;
+        # PrivateTmp = true;
         # ProtectClock = "true";
         # ProtectControlGroups = "true";
-        ProtectHome = "true";
-        ProtectHostname = "true";
-        ProtectKernelLogs = "true";
-        ProtectKernelModules = "true";
-        ProtectKernelTunables = "true";
+        # ProtectHome = "true";
+        # ProtectHostname = "true";
+        # ProtectKernelLogs = "true";
+        # ProtectKernelModules = "true";
+        # ProtectKernelTunables = "true";
         # ProtectProc = "invisible";
         # ProtectSystem = "strict";
-        RemoveIPC = "true";
-        NoNewPrivileges = "true";
+        # RemoveIPC = "true";
+        # NoNewPrivileges = "true";
       };
       script = ''
         set -eu
