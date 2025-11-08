@@ -96,7 +96,12 @@ in
       settings =
         let
           genServiceStatus =
-            { serviceName, key, propertyName, propertyValue }:
+            {
+              serviceName,
+              key,
+              propertyName,
+              propertyValue,
+            }:
             let
               script = pkgs.writeShellScriptBin "get-last-active-time.sh" ''
                 export LOAD_ERROR="$(systemctl show ${serviceName} --property=LoadError | ${pkgs.coreutils}/bin/cut -d= -f2)"
