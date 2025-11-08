@@ -137,7 +137,7 @@
             key = "GT";
           }
         ];
-        programs.waybar.settings.mainBar.modules-right."custom/GT" = {
+        programs.waybar.settings.mainBar."custom/GT" = {
           on-click = "/run/current-system/sw/bin/systemctl start gatech-vpn.service";
           on-click-right = "/run/current-system/sw/bin/systemctl stop gatech-vpn.service";
         };
