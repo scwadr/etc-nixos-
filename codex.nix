@@ -20,7 +20,7 @@
     {
       home.packages = [ pkgs.codex ];
       home.file.".codex/auth.json" = {
-        source = config.lib.file.mkoutofstoresymlink systemconfig.age.secrets.codex-auth.path;
+        source = config.lib.file.mkOutOfStoreSymlink systemconfig.age.secrets.codex-auth.path;
       };
     };
 }
