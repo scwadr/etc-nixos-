@@ -50,6 +50,8 @@ in
       {
         serviceName = "nixos-upgrade.service";
         key = "u";
+        propertyName = "Result";
+        propertyValue = "success";
       }
     ];
     description = "show service status in waybar";
