@@ -32,6 +32,16 @@ in
               default = "";
               description = "key to show in waybar";
             };
+            propertyName = lib.mkOption {
+              type = lib.types.str;
+              default = "Result";
+              description = "systemd property name to use";
+            };
+            propertyValue = lib.mkOption {
+              type = lib.types.str;
+              default = "success";
+              description = "systemd property value to set as success";
+            };
           };
         }
       )
@@ -94,7 +104,7 @@ in
       settings =
         let
           genServiceStatus =
-            { serviceName, key, propertyName ? "Result", propertyValue ? "success" }:
+            { serviceName, key, propertyName, propertyValue }:
             let
               script = pkgs.writeShellScriptBin "get-last-active-time.sh" ''
                 export LOAD_ERROR="$(systemctl show ${serviceName} --property=LoadError | ${pkgs.coreutils}/bin/cut -d= -f2)"
