@@ -135,6 +135,8 @@
           {
             serviceName = "gatech-vpn.service";
             key = "GT";
+            propertyName = "ActiveState";
+            propertyValue = "active";
           }
         ];
         programs.waybar.settings.mainBar."custom/GT" = {

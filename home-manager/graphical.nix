@@ -94,16 +94,16 @@ in
       settings =
         let
           genServiceStatus =
-            { serviceName, key }:
+            { serviceName, key, propertyName ? "Result", propertyValue ? "success" }:
             let
               script = pkgs.writeShellScriptBin "get-last-active-time.sh" ''
                 export LOAD_ERROR="$(systemctl show ${serviceName} --property=LoadError | ${pkgs.coreutils}/bin/cut -d= -f2)"
                 if [[ 0 != "$(echo -n "$LOAD_ERROR" | ${pkgs.coreutils}/bin/wc -w)" ]]; then
                   printf '{"text": "✕", "tooltip": %s, "class": "load-error"}' "$(echo -n "${serviceName}: $LOAD_ERROR" | ${pkgs.jq}/bin/jq -Rsa .)"
                 fi
-                export RESULT="$(systemctl show ${serviceName} --property=Result | ${pkgs.coreutils}/bin/cut -d= -f2)"
+                export RESULT="$(systemctl show ${serviceName} --property=${propertyName} | ${pkgs.coreutils}/bin/cut -d= -f2)"
                 export DATE="$(${pkgs.coreutils}/bin/date -d "$(systemctl show ${serviceName} --property=ActiveExitTimestamp | ${pkgs.coreutils}/bin/cut -d= -f2)" +'%m-%d %H')"
-                if [[ "$RESULT" == "success" ]]; then
+                if [[ "$RESULT" == "${propertyValue}" ]]; then
                   printf '{"text": "○${key}", "tooltip": "${serviceName} %s", "class": "success"}' "$DATE"
                 else
                   printf '{"text": "△${key}", "tooltip": "${serviceName} %s: %s", "class": "%s"}' "$DATE" "$RESULT" "$RESULT"
