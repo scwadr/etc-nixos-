@@ -9,7 +9,11 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      github-copilot-cli = specialArgs.nixpkgs-unstable.legacyPackages.${prev.system}.github-copilot-cli;
+      github-copilot-cli =
+        (import specialArgs.nixpkgs-unstable {
+          inherit (prev) system;
+          config.allowUnfree = true;
+        }).github-copilot-cli;
     })
   ];
   environment.systemPackages = [
