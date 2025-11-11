@@ -110,24 +110,7 @@
     openFirewall = true;
   };
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      ollama = specialArgs.nixpkgs-unstable.legacyPackages.${prev.system}.ollama;
-    })
-  ];
-  services.ollama = {
-    enable = true;
-    loadModels = [
-      "llama3.2"
-      "nomic-embed-text"
-      "qwen3:8b"
-      "qwen2.5-coder:7b"
-    ];
-    host = "0.0.0.0";
-  };
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
-    config.services.ollama.port
-  ];
+  kiyurica.ollama.enableServer = true;
 
   services.keycloak = {
     enable = true;

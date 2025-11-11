@@ -20,5 +20,6 @@
     ./nerd-dictation
     ./gatech-vpn.nix
     ./ocproxy.nix
+    ./ollama.nix
   ];
 }

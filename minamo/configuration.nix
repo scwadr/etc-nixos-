@@ -133,4 +133,6 @@
 
   # kiyurica.nerd-dictation.enable = true;
   kiyurica.gatech-vpn.enable = true;
+
+  kiyurica.ollama.enableServer = true;
 }
