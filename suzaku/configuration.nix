@@ -28,6 +28,7 @@
     ../vnc.nix
     ../virt.nix
     ../wacom.nix
+    ../codex.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -176,4 +177,5 @@
   virtualisation.docker.storageDriver = "btrfs";
 
   kiyurica.gatech-vpn.enable = true;
+
 }
