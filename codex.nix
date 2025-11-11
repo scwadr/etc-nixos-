@@ -1,10 +1,14 @@
 {
+  pkgs,
   config,
   specialArgs,
   ...
 }:
 {
   imports = [ ./home-manager.nix ];
+  environment.systemPackages = [
+    pkgs.github-copilot-cli
+  ];
 
   home-manager.users.kiyurica =
     let
@@ -22,7 +26,6 @@
       ];
       home.packages = with pkgs; [
         codex
-        github-copilot-cli
       ];
     };
 }
