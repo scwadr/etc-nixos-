@@ -6,6 +6,12 @@
 }:
 {
   imports = [ ./home-manager.nix ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      github-copilot-cli = specialArgs.nixpkgs-unstable.legacyPackages.${prev.system}.github-copilot-cli;
+    })
+  ];
   environment.systemPackages = [
     pkgs.github-copilot-cli
   ];
@@ -19,9 +25,6 @@
       nixpkgs.overlays = [
         (final: prev: {
           codex = specialArgs.nixpkgs-unstable.legacyPackages.${prev.system}.codex;
-        })
-        (final: prev: {
-          github-copilot-cli = specialArgs.nixpkgs-unstable.legacyPackages.${prev.system}.github-copilot-cli;
         })
       ];
       home.packages = with pkgs; [
