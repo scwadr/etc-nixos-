@@ -55,7 +55,7 @@
       description = ''
         path to file containing the password that is encrypted for systemd
 
-        For example, use `run0 systemd-creds enrcypt --name=password password.txt password.cred` to generate the file.
+        For example, use `run0 systemd-creds encrypt --name=password password.txt password.cred` to generate the file.
       '';
       type = path;
     };
