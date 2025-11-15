@@ -21,5 +21,6 @@
     ./gatech-vpn.nix
     ./ocproxy.nix
     ./ollama.nix
+    ./proxy-server.nix
   ];
 }

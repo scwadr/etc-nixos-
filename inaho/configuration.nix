@@ -98,4 +98,10 @@
 
   programs.singularity.enable = true;
   programs.singularity.package = pkgs.apptainer;
+
+  kiyurica.proxy-server = {
+    enable = true;
+    listen-host = "inaho.tailcbbed9.ts.net";
+    external-interfaces = [ "enp1s0" ];
+  };
 }
