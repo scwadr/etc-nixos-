@@ -84,6 +84,7 @@
         NoNewPrivileges = "true";
         PrivateDevices = "true";
         PrivateTmp = true;
+        PrivateUsers = "true";
         ProtectClock = "true";
         ProtectControlGroups = "true";
         ProtectHome = "true";
@@ -93,7 +94,6 @@
         ProtectKernelTunables = "true";
         ProtectProc = "invisible";
         ProtectSystem = "strict";
-        ProtectUsers = "true";
         RemoveIPC = "true";
         RestrictAddressFamilies = [
           "AF_INET"
