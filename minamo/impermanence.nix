@@ -6,10 +6,10 @@
 }:
 {
   imports = [ specialArgs.impermanence.nixosModules.impermanence ];
-  
+
   # Ensure SSH keys are available before agenix runs
   age.identityPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
-  
+
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
