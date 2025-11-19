@@ -33,6 +33,9 @@
         ".thunderbird"
         ".config/syncthing"
         ".config/sayonara"
+        ".config/github-copilot"
+        ".config/.copilot"
+        ".codex"
       ];
     };
   };
