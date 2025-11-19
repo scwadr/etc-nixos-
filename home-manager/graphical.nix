@@ -96,6 +96,21 @@ in
       ];
     };
 
+    systemd.user.services.waybar-battery-reload = {
+      Unit.Description = "reload waybar's battery module on battery status changes";
+      Unit.After = [ "waybar.service" ];
+      Unit.Requires = [ "waybar.service" ];
+      Service.ExecStart = let
+        signal = 34 + config.programs.waybar.settings.mainBar.battery.signal;
+      in pkgs.writeShellScript "waybar-battery-reload.sh" ''
+        udevadm monitor --udev --subsystem-match=power_supply | while read -r line; do
+          if [[ "$line" == *"change"* ]] && [[ "$line" == *"BAT"* ]]; then
+            systemctl --user kill --signal=${builtins.toString signal} waybar.service
+          fi
+        done
+      '';
+    };
+
     programs.waybar = {
       # TODO: run systemctl --user restart waybar on activation
       enable = true;
@@ -161,6 +176,7 @@ in
               tooltip-format = "{power}W";
               format-time = "{H}:{m}";
               rotate = rotationAngle;
+              signal = 1;
             };
             "clock" = {
               format = "{:%H:%M %Y-%m-%d}";
