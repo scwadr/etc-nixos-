@@ -109,6 +109,7 @@ in
           fi
         done
       '';
+      Install.WantedBy = [ "default.target" ];
     };
 
     programs.waybar = {
