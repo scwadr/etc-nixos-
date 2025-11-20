@@ -22,4 +22,14 @@
   services.udev.extraRules = ''
     KERNEL=="uhid", SUBSYSTEM=="misc", GROUP="${config.security.tpm2.tssGroup}", MODE="0660"
   '';
+
+  systemd.user.services.mpris-proxy = {
+    description = "TPM-backed FIDO token";
+    documentation = [ "https://github.com/psanford/tpm-fido" ];
+    unitConfig.PartOf = [
+      "graphical-session.target"
+    ];
+    serviceConfig.ExecStart = "/run/current-system/sw/bin/tpm-fido";
+    wantedBy = [ "default.target" ];
+  };
 }
