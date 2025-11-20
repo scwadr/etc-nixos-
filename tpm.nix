@@ -29,6 +29,9 @@
     unitConfig.PartOf = [
       "graphical-session.target"
     ];
+    path = [
+      pkgs.pinentry
+    ];
     serviceConfig.ExecStart = "/run/current-system/sw/bin/tpm-fido";
     wantedBy = [ "default.target" ];
   };
