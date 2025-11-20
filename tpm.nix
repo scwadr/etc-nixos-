@@ -23,7 +23,7 @@
     KERNEL=="uhid", SUBSYSTEM=="misc", GROUP="${config.security.tpm2.tssGroup}", MODE="0660"
   '';
 
-  systemd.user.services.mpris-proxy = {
+  systemd.user.services.tpm-fido = {
     description = "TPM-backed FIDO token";
     documentation = [ "https://github.com/psanford/tpm-fido" ];
     unitConfig.PartOf = [
