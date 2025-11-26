@@ -22,7 +22,7 @@ def fetch_ics(ics_url):
     
     # Create cache filename from URL hash
     import hashlib
-    url_hash = hashlib.md5(ics_url.encode()).hexdigest()
+    url_hash = hashlib.sha512(ics_url.encode()).hexdigest()
     cache_file = CACHE_DIR / f'events_{url_hash}.ics'
     
     # Check if cache exists and is recent
@@ -58,45 +58,49 @@ def fetch_ics(ics_url):
     
     return None
 
-def get_next_event(ics_url):
-    """Get the next upcoming event"""
-    content = fetch_ics(ics_url)
+def load_calendar(content):
+    """Parse ICS content into a Calendar object"""
     if not content:
-        return {"text": "📅", "tooltip": "No calendar data", "class": "error"}
+        return None
     
     try:
-        calendar = Calendar.from_ical(content)
+        return Calendar.from_ical(content)
     except Exception:
         traceback.print_exc()
-        return {"text": "📅", "tooltip": "Invalid calendar format", "class": "error"}
-    
+        return None
+
+def get_next_event(calendars):
+    """Get the next upcoming event from multiple calendars"""
     now = datetime.now(tz=timezone.utc)
     now_local = now.astimezone()
     tomorrow = now_local + timedelta(days=1)
     
-    # Get events for today and tomorrow, including recurring events
-    events_today = of(calendar).at(now_local.date())
-    events_tomorrow = of(calendar).at(tomorrow.date())
-    all_events = events_today + events_tomorrow
-    
     upcoming_events = []
-    for event in all_events:
-        event_start = event.get('dtstart')
-        if event_start:
-            # Convert to datetime if it's a date
-            if hasattr(event_start.dt, 'date'):
-                start_dt = event_start.dt
-            else:
-                # It's a date, convert to datetime at start of day
-                start_dt = datetime.combine(event_start.dt, datetime.min.time())
-                start_dt = start_dt.replace(tzinfo=now_local.tzinfo)
-            
-            if start_dt > now_local:
-                summary = str(event.get('summary', 'No title'))
-                upcoming_events.append({
-                    'start': start_dt,
-                    'summary': summary
-                })
+    
+    # Process each calendar
+    for calendar in calendars:
+        # Get events for today and tomorrow, including recurring events
+        events_today = of(calendar).at(now_local.date())
+        events_tomorrow = of(calendar).at(tomorrow.date())
+        all_events = events_today + events_tomorrow
+        
+        for event in all_events:
+            event_start = event.get('dtstart')
+            if event_start:
+                # Convert to datetime if it's a date
+                if hasattr(event_start.dt, 'date'):
+                    start_dt = event_start.dt
+                else:
+                    # It's a date, convert to datetime at start of day
+                    start_dt = datetime.combine(event_start.dt, datetime.min.time())
+                    start_dt = start_dt.replace(tzinfo=now_local.tzinfo)
+                
+                if start_dt > now_local:
+                    summary = str(event.get('summary', 'No title'))
+                    upcoming_events.append({
+                        'start': start_dt,
+                        'summary': summary
+                    })
     
     if not upcoming_events:
         return {"text": "📅", "tooltip": "No upcoming events", "class": "empty"}
@@ -134,13 +138,25 @@ def get_next_event(ics_url):
 
 def main():
     if len(sys.argv) != 2:
-        print(json.dumps({"text": "📅", "tooltip": f"Usage: {sys.argv[0]} <ICS_URL>", "class": "error"}))
+        print(json.dumps({"text": "📅", "tooltip": f"Usage: {sys.argv[0]} <ICS_URL_FILE>", "class": "error"}))
         return
     
     ics_url_path = sys.argv[1]
     with open(ics_url_path) as f:
-        ics_url = f.read().strip()
-    result = get_next_event(ics_url)
+        ics_urls = [line.strip() for line in f if line.strip()]
+    
+    # Fetch and load all calendars
+    calendars = []
+    for ics_url in ics_urls:
+        content = fetch_ics(ics_url)
+        calendar = load_calendar(content)
+        if calendar:
+            calendars.append(calendar)
+    
+    if not calendars:
+        result = {"text": "📅", "tooltip": "No calendar data", "class": "error"}
+    else:
+        result = get_next_event(calendars)
     print(json.dumps(result))
 
 if __name__ == "__main__":
