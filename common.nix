@@ -57,7 +57,10 @@
     file
     picocom
     shpool
+    gnome.adwaits-icon-theme
   ];
+
+  programs.dconf.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
