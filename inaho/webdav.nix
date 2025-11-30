@@ -37,11 +37,5 @@
     };
   };
 
-  systemd.tmpfiles.rules = [
-    "d /var/lib/webdav 0755 nginx nginx -"
-    "d /var/lib/webdav/joplin 0755 nginx nginx -"
-    "d /var/lib/webdav/tmp 0755 nginx nginx -"
-  ];
-
   networking.firewall.allowedTCPPorts = [ 8087 ];
 }
