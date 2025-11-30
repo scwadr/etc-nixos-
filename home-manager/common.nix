@@ -75,6 +75,7 @@
     with pkgs;
     [
       nmap
+      sshfs
       git-filter-repo
 
       pulseaudio
