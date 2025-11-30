@@ -35,6 +35,7 @@
         '';
       };
     };
+    systemd.services.nginx.serviceConfig.StateDirectory = "webdav";
   };
 
   networking.firewall.allowedTCPPorts = [ 8087 ];
