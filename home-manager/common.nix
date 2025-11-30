@@ -117,6 +117,9 @@
       zathura
       lyx # goated TeX editor
       texliveFull # compile LyX files to PDF
+
+      joplin
+      joplin-desktop
     ]
     ++ (with pkgs.libsForQt5; [
       gwenview
