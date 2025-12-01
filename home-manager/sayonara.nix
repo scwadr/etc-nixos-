@@ -10,4 +10,5 @@
         "INSERT OR REPLACE INTO settings (key, value) VALUES ('notify_new_version', 'false');"
     fi
   '';
+  home.packages = [ pkgs.sayonara ];
 }

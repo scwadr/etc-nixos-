@@ -83,7 +83,6 @@
       pulseaudio
       playerctl
       clipman
-      kdePackages.ark
       eza
       networkmanagerapplet # provides nm-connection-editor
       darktable
@@ -121,11 +120,10 @@
       joplin
       joplin-desktop
     ]
-    ++ (with pkgs.libsForQt5; [
+    ++ (with pkgs.kdePackages; [
+      ark
       gwenview
       kate
-      ctags
-      sayonara
     ])
     ++ (with pkgs.hunspellDicts; [
       en_CA
