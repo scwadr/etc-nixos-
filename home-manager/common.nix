@@ -83,7 +83,7 @@
       pulseaudio
       playerctl
       clipman
-      libsForQt5.ark
+      kdePackages.ark
       eza
       networkmanagerapplet # provides nm-connection-editor
       darktable
