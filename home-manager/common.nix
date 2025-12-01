@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  declarative-flatpak,
   ...
 }:
 
@@ -15,6 +16,7 @@
     ./firefox.nix
     ./sayonara.nix
     ./kicad.nix
+    declarative-flatpak.nixosModules.default
   ];
 
   programs.git = {
@@ -179,5 +181,16 @@
     embed-metadata = true;
     embed-thumbnail = true;
     embed-subs = true;
+  };
+
+  services.flatpak = {
+    enable = true;
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      "elementary" = "https://flatpak.elementary.io/repo.flatpakrepo";
+    };
+    packages = [
+      "elementary:app/io.elementary.capnet-assist//stable"
+    ];
   };
 }
