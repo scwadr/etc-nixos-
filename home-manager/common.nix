@@ -109,7 +109,7 @@
 
       calc
 
-      freerdp3 # RDP
+      freerdp
       thunderbird
 
       nixfmt-rfc-style
