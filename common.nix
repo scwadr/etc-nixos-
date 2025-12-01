@@ -3,6 +3,7 @@
   lib,
   pkgs,
   specialArgs,
+  declarative-flatpak,
   ...
 }:
 {
@@ -14,6 +15,7 @@
     ./man.nix
     ./home-manager.nix
     ./dbus-monitor.nix
+    declarative-flatpak.nixosModules.default
   ];
 
   # This value determines the NixOS release from which the default
@@ -116,4 +118,15 @@
   networking.networkmanager.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
+
+  services.flatpak = {
+    enable = true;
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      "elementary" = "https://flatpak.elementary.io/repo.flatpakrepo";
+    };
+    packages = [
+      "elementary:app/io.elementary.capnet-assist//stable"
+    ];
+  };
 }

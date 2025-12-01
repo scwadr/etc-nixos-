@@ -30,6 +30,7 @@
     sync-pdf-viewer.inputs.nixpkgs.follows = "nixpkgs";
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
+    declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak/latest";
   };
 
   outputs =
