@@ -22,7 +22,7 @@
           # TODO: use sunset options from home-manager/wlsunset.nix
           swayConfig = pkgs.writeText "greetd-sway-config" (
             ''
-              exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+              exec "${pkgs.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
               exec "${pkgs.wlsunset}/bin/wlsunset -L -79.38 -T 6500 -g 1.000000 -l 43.65 -t 2000"
               bindsym Mod4+shift+e exec swaynag -t warning -m 'Action?' -b 'Poweroff' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'
             ''
