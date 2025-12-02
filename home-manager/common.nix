@@ -191,6 +191,7 @@
     };
     packages = [
       "elementary:app/io.elementary.capnet-assist//stable"
+      "flathub:app/io.github.dzheremi2.lrcmake-gtk//stable"
     ];
   };
 }
