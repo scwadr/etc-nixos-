@@ -16,7 +16,7 @@
     ./firefox.nix
     ./sayonara.nix
     ./kicad.nix
-    declarative-flatpak.nixosModules.default
+    declarative-flatpak.homeModules.default
   ];
 
   programs.git = {
