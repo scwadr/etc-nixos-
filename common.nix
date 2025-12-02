@@ -58,6 +58,7 @@
     picocom
     shpool
     adwaita-icon-theme
+    waypipe
   ];
 
   programs.dconf.enable = true;
