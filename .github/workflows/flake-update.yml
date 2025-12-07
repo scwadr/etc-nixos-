@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v20
+      - uses: cachix/install-nix-action@0b0e072294b088b73964f1d72dfdac0951439dbd
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - run: nix flake update
