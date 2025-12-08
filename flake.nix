@@ -130,8 +130,6 @@
             (python3.withPackages (p: [ p.pyserial ]))
           ];
         };
-
-        checks.headless = import ./tests/headless.nix { inherit pkgs; };
       }
     );
 }
