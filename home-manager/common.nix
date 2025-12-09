@@ -21,10 +21,10 @@
 
   programs.git = {
     enable = true;
-    userName = "Ken Shibata";
-    userEmail = "ken.shibata+git@kiyuri.ca";
     lfs.enable = true;
-    extraConfig = {
+    settings = {
+      user.name = "Ken Shibata";
+      user.email = "ken.shibata@kiyuri.ca";
       init.defaultBranch = "main";
       url."ssh://git@github.com".insteadOf = "https://github.com";
       pull.rebase = true;
