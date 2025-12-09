@@ -28,7 +28,7 @@
       # required for display managers (so they can run niri-session)
       enable = true;
       # package = niri.packages.${pkgs.system}.niri-stable;
-      package = pkgs.niri;
+      package = nixpkgs-unstable.niri;
     };
     home-manager.users.kiyurica = {
       imports = [
