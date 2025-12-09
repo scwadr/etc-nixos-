@@ -12,6 +12,7 @@ jobs:
       - uses: cachix/install-nix-action@0b0e072294b088b73964f1d72dfdac0951439dbd
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: rm flake.lock # ensure a "clean" update
       - run: nix flake update
       - name: commit and push
         run: |
