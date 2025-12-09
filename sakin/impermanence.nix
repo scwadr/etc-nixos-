@@ -15,7 +15,6 @@
     directories = [
       "/var/log"
       "/var/lib"
-      "/etc/secureboot"
       "/etc/ssh"
     ];
     files = [ "/etc/machine-id" ];

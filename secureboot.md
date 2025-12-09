@@ -4,7 +4,7 @@ Note: these is a highly abridged version of [Lanzaboote's Quickstart](https://gi
 ## Prerequisites
 - Check `bootctl status` - bootloader is `systemd-boot` and firmware is `UEFI`
 - Use full disk encryption
-  - Secret! files stored in `/etc/secureboot` etc
+  - Secret! files stored in `/etc/secureboot` or `/var/lib/sbctl`
 - Set a BIOS password
   - ThinkPad: Supervisor Password has higher prio than System Management Password!
 
