@@ -13,7 +13,7 @@
       wrappedBinaries = {
         firefox = {
           executable = "${pkgs.firefox}/bin/firefox";
-          profile = "${pkgs.firejail}/etc/firejail/firefox.inc";
+          profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
         };
       };
     };
