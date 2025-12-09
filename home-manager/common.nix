@@ -13,7 +13,6 @@
     ./pexec.nix
     ./neovim.nix
     ./fonts.nix
-    ./firefox.nix
     ./sayonara.nix
     ./kicad.nix
     declarative-flatpak.homeModules.default

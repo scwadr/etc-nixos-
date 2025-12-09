@@ -7,7 +7,4 @@
       { id = "mclkkofklkfljcocdinagocijmpgbhab"; } # japanese input
     ];
   };
-  programs.firefox = {
-    enable = true;
-  };
 }
