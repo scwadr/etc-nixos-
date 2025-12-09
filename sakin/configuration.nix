@@ -81,4 +81,3 @@
       programs.niri.settings.layout.default-column-width.proportion = lib.mkForce 0.3;
     };
 }
-
