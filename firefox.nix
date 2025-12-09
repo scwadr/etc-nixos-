@@ -12,10 +12,13 @@
       enable = true;
       wrappedBinaries = {
         firefox = {
-          executable = "${pkgs.firefox}/bin/firefox";
+          executable = "/run/current-system/sw/bin/firefox";
           profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
         };
       };
+    };
+    programs.firefox = {
+      enable = true;
     };
 
     environment.etc."firejail/firefox.local".text = ''
