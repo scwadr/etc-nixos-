@@ -11,7 +11,7 @@
   # FIDO token implementation that uses TPM for key protection
   environment.systemPackages = [
     pkgs.tpm-fido
-    pkgs.pinentry # required by tpm-fido for user authentication
+    pkgs.pinentry-curses # required by tpm-fido for user authentication
   ];
 
   # Load uhid kernel module at boot so tpm-fido can emulate a USB HID device
@@ -30,7 +30,7 @@
       "graphical-session.target"
     ];
     path = [
-      pkgs.pinentry
+      pkgs.pinentry-curses
     ];
     serviceConfig.ExecStart = "/run/current-system/sw/bin/tpm-fido";
     wantedBy = [ "default.target" ];
