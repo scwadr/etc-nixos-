@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  declarative-flatpak,
   ...
 }:
 
@@ -15,7 +14,6 @@
     ./fonts.nix
     ./sayonara.nix
     ./kicad.nix
-    declarative-flatpak.homeModules.default
   ];
 
   programs.git = {
@@ -178,16 +176,5 @@
     embed-subs = true;
   };
 
-  services.flatpak = {
-    enable = true;
-    remotes = {
-      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      "elementary" = "https://flatpak.elementary.io/repo.flatpakrepo";
-    };
-    packages = [
-      "elementary:app/io.elementary.capnet-assist//stable"
-      "flathub:app/io.github.dzheremi2.lrcmake-gtk//stable"
-    ];
-  };
   programs.ssh.enableDefaultConfig = false;
 }

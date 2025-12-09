@@ -5,6 +5,7 @@
   specialArgs,
   nixos-hardware,
   nixpkgs-unstable,
+  declarative-flatpak,
   ...
 }:
 
@@ -29,6 +30,7 @@
     ../virt.nix
     ../wacom.nix
     ../codex.nix
+    declarative-flatpak.nixosModules.default
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -168,4 +170,16 @@
 
   kiyurica.gatech-vpn.enable = true;
 
+  services.flatpak = {
+    enable = true;
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      "elementary" = "https://flatpak.elementary.io/repo.flatpakrepo";
+    };
+    packages = [
+      "elementary:app/io.elementary.capnet-assist//stable"
+      "flathub:app/io.github.dzheremi2.lrcmake-gtk//stable"
+      "flathub:app/org.mozilla.firefox//stable"
+    ];
+  };
 }
