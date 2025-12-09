@@ -166,10 +166,6 @@
 
   kiyurica.networks.eduroam.enable = true;
 
-  virtualisation.docker.enable = true;
-  users.users.kiyurica.extraGroups = [ "docker" ];
-  virtualisation.docker.storageDriver = "btrfs";
-
   kiyurica.gatech-vpn.enable = true;
 
 }
