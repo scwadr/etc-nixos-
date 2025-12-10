@@ -87,7 +87,6 @@
       libreoffice-qt
       notify-desktop
       pdftk
-      pdfchain # GUI for pdftk
       qrencode
       poppler-utils
       meld
