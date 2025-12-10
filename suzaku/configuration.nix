@@ -140,7 +140,7 @@
   };
 
   kiyurica.tailscale.enable = true;
-  systemd.services.tailscaled-autoconnect.wantedBy = lib.mkForce []; # we may not always be connected to the Internet and therefore the tailnet
+  systemd.services.tailscaled-autoconnect.wantedBy = lib.mkForce [ ]; # we may not always be connected to the Internet and therefore the tailnet
 
   kiyurica.kdeconnect.enable = true;
 
