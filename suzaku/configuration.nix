@@ -180,6 +180,10 @@
       "elementary:app/io.elementary.capnet-assist//stable"
       "flathub:app/io.github.dzheremi2.lrcmake-gtk//stable"
       "flathub:app/org.mozilla.firefox//stable"
+      "flathub:app/org.gnome.World.Secrets//stable"
+      "flathub:app/org.keepassxc.KeePassXC//stable"
+      "flathub:app/org.mozilla.Thunderbird//stable"
+      "flathub:app/io.github.alainm23.planify//stable"
     ];
   };
 
