@@ -191,7 +191,7 @@
 
   systemd.services.flatpak-permissions = {
     description = "Set permissions on /var/lib/flatpak";
-    requisite = [ "manage-flatpaks-activation.service" ];
+    wants = [ "manage-flatpaks-activation.service" ];
     after = [ "manage-flatpaks-activation.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
