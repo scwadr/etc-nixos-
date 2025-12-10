@@ -31,6 +31,8 @@
         ".local/PrusaSlicer"
         ".local/share/prusa-slicer"
         ".var/app/org.mozilla.firefox"
+        ".var/app/org.mozilla.Thunderbird"
+        ".var/app/io.github.alainm23.planify"
         ".mozilla/firefox"
         ".thunderbird"
         ".config/syncthing"
