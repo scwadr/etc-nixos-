@@ -30,6 +30,7 @@
         ".local/share/log-window-titles"
         ".local/PrusaSlicer"
         ".local/share/prusa-slicer"
+        ".var/app/org.mozilla.firefox"
         ".mozilla/firefox"
         ".thunderbird"
         ".config/syncthing"
