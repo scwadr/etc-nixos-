@@ -187,7 +187,15 @@
     ];
   };
 
-  system.activationScripts.flatpakPermissions = ''
-    ${pkgs.coreutils}/bin/chmod o+X /var/lib/flatpak
-  '';
+  systemd.services.flatpak-permissions = {
+    description = "Set permissions on /var/lib/flatpak";
+    requisite = [ "manage-flatpaks-auto.service" ];
+    after = [ "manage-flatpaks-auto.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "/run/current-system/sw/bin/chmod o+rX ${config.services.flatpak.dataDir}";
+      RemainAfterExit = true;
+    };
+  };
 }
