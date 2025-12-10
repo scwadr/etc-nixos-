@@ -21,6 +21,7 @@
     ./minio.nix
     ./webdav.nix
     ./nfs.nix
+    ./samba.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
