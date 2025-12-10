@@ -121,4 +121,6 @@
   networking.networkmanager.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
+
+  services.fwupd.enable = true;
 }
