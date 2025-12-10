@@ -20,6 +20,7 @@
     ./backup.nix
     ./minio.nix
     ./webdav.nix
+    ./nfs.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -90,8 +91,6 @@
 
   kiyurica.tailscale.enable = true;
   kiyurica.tailscale.cert.enable = true;
-
-  networking.firewall.allowedTCPPorts = [ 2049 ];
 
   kiyurica.remote-builder.enable = true;
 
