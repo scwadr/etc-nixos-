@@ -348,8 +348,9 @@ in
       enable = true;
       readOnly = true;
       entries = [
-        "${config.home.homeDirectory}/.nix-profile/share/applications/firefox.desktop"
-        "${config.home.homeDirectory}/.nix-profile/share/applications/thunderbird.desktop"
+        "/var/lib/flatpak/exports/share/applications/org.mozilla.firefox.desktop"
+        "/var/lib/flatpak/exports/share/applications/org.mozilla.Thunderbird.desktop"
+        "/var/lib/flatpak/exports/share/applications/io.github.alainm23.planify.desktop"
       ];
     };
 
