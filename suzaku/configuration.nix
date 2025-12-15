@@ -185,6 +185,9 @@
       "flathub:app/com.github.flxzt.rnote//stable"
       "flathub:app/org.kde.ark//stable"
     ];
+    overrides."org.mozilla.firefox" = {
+      Context.devices = [ "dri" ];
+    }
   };
 
   systemd.services.flatpak-permissions = {
