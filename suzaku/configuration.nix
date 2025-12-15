@@ -187,7 +187,7 @@
     ];
     overrides."org.mozilla.firefox" = {
       Context.devices = [ "dri" ];
-    }
+    };
   };
 
   systemd.services.flatpak-permissions = {
