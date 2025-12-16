@@ -31,6 +31,7 @@
     ../wacom.nix
     ../codex.nix
     declarative-flatpak.nixosModules.default
+    ../flatpak/org.libreoffice.LibreOffice.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -185,6 +186,15 @@
       "flathub:app/com.github.flxzt.rnote//stable"
       "flathub:app/org.kde.ark//stable"
     ];
+    overrides."global" = {
+      Context.sockets = [ "!fallback-x11" "!x11" ];
+      Context.filesystems = [
+        "!host"
+        "!host-etc"
+        "!host-os"
+        "!home"
+      ]; # just don't use apps that need this :D
+    };
     overrides."org.mozilla.firefox" = {
       Context.devices = [ "dri" ];
     };

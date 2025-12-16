@@ -84,7 +84,6 @@
       networkmanagerapplet # provides nm-connection-editor
       darktable
       imagemagick
-      libreoffice-qt
       notify-desktop
       pdftk
       qrencode
