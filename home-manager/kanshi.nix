@@ -47,6 +47,11 @@
             output.alias = "CloughPinkL";
           }
           {
+            output.criteria = "Hisense Electric Co., Ltd. HISENSE-TV 0x81010101";
+            output.mode = "3840x2150@60.000Hz";
+            output.scale = 1.5;
+          }
+          {
             profile.name = "eastyork-dock";
             profile.outputs = [
               {
