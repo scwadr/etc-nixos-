@@ -122,7 +122,6 @@
   programs.singularity.enable = true;
   programs.singularity.package = pkgs.apptainer;
 
-  # kiyurica.nerd-dictation.enable = true;
   kiyurica.gatech-vpn.enable = true;
 
   kiyurica.ollama.enableServer = true;

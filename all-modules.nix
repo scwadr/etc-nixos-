@@ -14,7 +14,6 @@
     ./displaylink.nix
     ./eduroam
     ./aiden.nix
-    ./nerd-dictation
     ./gatech-vpn.nix
     ./ocproxy.nix
     ./ollama.nix
