@@ -48,6 +48,15 @@
 
           auth_basic "WebDAV";
           auth_basic_user_file ${config.age.secrets.webdav-htpasswd.path};
+
+          add_header 'Access-Control-Allow-Origin' 'http://localhost:*' always;
+          add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, MKCOL, COPY, MOVE, PROPFIND, OPTIONS' always;
+          add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control' always;
+          add_header 'Access-Control-Allow-Credentials' 'true' always;
+
+          if ($request_method = 'OPTIONS') {
+            return 204;
+          }
         '';
       };
     };
