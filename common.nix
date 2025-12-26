@@ -122,4 +122,13 @@
   networking.networkmanager.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
+
+  nix.settings = {
+    trusted-substituters = [
+      "https://cache.nixos.org?priority=10"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
+  };
 }
