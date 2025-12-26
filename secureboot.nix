@@ -17,7 +17,7 @@
 
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/etc/secureboot";
+    pkiBundle = "/etc/secureboot"; # TODO: move to new /var/lib space
   };
 
   # This is needed to auto-unlock LUKS with TPM 2 - https://discourse.nixos.org/t/full-disk-encryption-tpm2/29454/2

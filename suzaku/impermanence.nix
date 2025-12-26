@@ -60,6 +60,18 @@
           mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
       fi
 
+      btrfs subvolume create /btrfs_tmp/root
+      umount /btrfs_tmp
+    '';
+  };
+
+  systemd.services.delete-old-roots = {
+    description = "remove roots older than 30 days";
+    serviceConfig.Type = "oneshot";
+    script = ''
+      mkdir /btrfs_tmp
+      mount /dev/mapper/crypted /btrfs_tmp
+
       delete_subvolume_recursively() {
           IFS=$'\n'
           for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
@@ -75,5 +87,10 @@
       btrfs subvolume create /btrfs_tmp/root
       umount /btrfs_tmp
     '';
+  };
+  systemd.timers.delete-old-roots = {
+    wantedBy = [ "timers.target" ];
+    timerConfig.OnBootSec = "15m";
+    timerConfig.Persistent = true;
   };
 }
