@@ -12,12 +12,5 @@
       flake = "github:nyiyui/etc-nixos";
       allowReboot = true;
     };
-    nix.gc = {
-      options = "--delete-older-than 14d";
-      persistent = true;
-      dates = lib.mkDefault "06:00"; # after reboot window
-      automatic = true;
-      randomizedDelaySec = "1h";
-    };
   };
 }
