@@ -145,8 +145,6 @@
   kiyurica.tailscale.enable = true;
   systemd.services.tailscaled-autoconnect.wantedBy = lib.mkForce [ ]; # we may not always be connected to the Internet and therefore the tailnet
 
-  kiyurica.kdeconnect.enable = true;
-
   # Enable mDNS for LAN hostname resolution
   services.avahi = {
     enable = true;

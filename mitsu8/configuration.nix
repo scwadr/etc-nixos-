@@ -156,6 +156,4 @@
   ];
 
   kiyurica.tailscale.enable = true;
-
-  kiyurica.kdeconnect.enable = true;
 }

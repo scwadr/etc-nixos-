@@ -8,7 +8,6 @@
     ./tailscale-cert.nix
     ./autoUpgrade-git.nix
     ./reimu2.nix
-    ./kdeconnect.nix
     ./laptop.nix
     ./power-efficiency.nix
     ./displaylink.nix
