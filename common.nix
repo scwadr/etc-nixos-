@@ -9,7 +9,7 @@
   imports = [
     ./all-modules.nix
     ./reimu.nix
-    # ./i18n.nix
+    ./i18n.nix
     ./doas.nix
     ./man.nix
     ./home-manager.nix
