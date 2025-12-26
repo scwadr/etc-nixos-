@@ -231,9 +231,4 @@
     platform = "ipu6ep";
     # cf. https://github.com/NixOS/nixpkgs/issues/225743#issuecomment-1523508154
   };
-
-  hisame.services.sync = {
-    enable = true;
-    path = "/home/kiyurica/inaba/hisame";
-  };
 }
