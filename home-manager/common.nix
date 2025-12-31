@@ -47,7 +47,7 @@
     enable = true;
     shellInit = ''
       set fish_greeting
-      ${builtins.readFile ./profile.sh}
+      ${builtins.readFile ./profile.fish}
     '';
     plugins = [
       {
