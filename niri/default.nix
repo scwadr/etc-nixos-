@@ -318,6 +318,13 @@
       ];
     };
 
+    xdg.portal = {
+      enable = true;
+      # https://github.com/YaLTeR/niri/wiki/Screencasting
+      extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+      xdgOpenUsePortal = true;
+    };
+
     # environment.systemPackages = with pkgs; [ pkgs.libsForQt5.qt5.qtwayland ];
     services.systemd-lock-handler.enable = true;
   };
