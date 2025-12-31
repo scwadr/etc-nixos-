@@ -104,4 +104,13 @@
           __pycache__
         '';
     };
+
+  systemd.services.syncthing = {
+    environment.GOMAXPROCS = "1";
+    serviceConfig = {
+      CPUWeight = 20;
+      CPUQuota = "50%";
+      IOWeight = 20;
+    };
+  };
 }
