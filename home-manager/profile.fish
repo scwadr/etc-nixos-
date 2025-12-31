@@ -2,6 +2,9 @@ export VERSION_CONTROL=numbered
 
 export LESS='-R -s -M +Gg'
 
+export VISUAL='hx'
+export EDITOR="$VISUAL"
+
 alias sudo=doas
 alias zudo=doas
 
@@ -68,24 +71,22 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-if status is-interactive
-  if test -z "$KIYURICA_IN_SANDBOX_DEV"
+if status is-interactive; and test -z "$KIYURICA_IN_SANDBOX_DEV"
     fish_ssh_agent
     set key ~/.ssh/id_inaba
     test -e "$key"
     or set key ~/inaba/geofront/id_inaba
     ssh-add -l | grep -q 'WBykfqqS1+mkkNe0XEtCzvoV3oms/Mli+bz0FhOPWzg' || ssh-add "$key"
-  end
 end
 
 function jpeg-to-pdf
-  convert -density 300 -gravity Center $argv out.pdf
+    convert -density 300 -gravity Center $argv out.pdf
 end
 
 function pdf-remove-annotations
-  pdftk "$argv[1]" output - uncompress | sed '/^\/Annots/d' | pdftk - output "$argv[2]" compress
+    pdftk "$argv[1]" output - uncompress | sed '/^\/Annots/d' | pdftk - output "$argv[2]" compress
 end
 
 function gtid
-  echo 903986453
+    echo 903986453
 end
