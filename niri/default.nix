@@ -306,7 +306,13 @@
                       draw-border-with-background = false;
                     }
                     {
-                      matches = [ { app-id = "^org\\.gnome\\.World\\.Secrets$"; } ];
+                      matches = [ { app-id = ''^org\.gnome\.World\.Secrets$''; } ];
+                      block-out-from = "screencast";
+                    }
+                  ];
+                  layer-rules = [
+                    {
+                      matches = [ { namespace = "^notifications$"; } ];
                       block-out-from = "screencast";
                     }
                   ];
