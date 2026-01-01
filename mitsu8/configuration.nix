@@ -35,8 +35,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   #boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
   kiyurica.desktop.sway.enable = true;
   services.greetd = {
     enable = true;
