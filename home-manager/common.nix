@@ -79,7 +79,6 @@
       playerctl
       clipman
       eza
-      networkmanagerapplet # provides nm-connection-editor
       darktable
       imagemagick
       notify-desktop
