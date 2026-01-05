@@ -15,6 +15,7 @@
 
     overrideDevices = true;
     overrideFolders = true;
+    settings.options.urAccepted = -1;
     settings.devices = {
       "minato".id = "6ROWFH5-WMAJ5JO-TDJA22O-AOQYET7-SCRIF6T-Q6A3HMA-VP7263N-JMIIRQO";
       "suzaku".id = "5DES2YX-7XTFTK7-SGP4VRD-KVS5DAO-VPMXEC7-RDAGYKE-QDRZDDD-NS5ANAZ";
