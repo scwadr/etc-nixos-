@@ -37,7 +37,7 @@
           cleanInterval = "86400";
           maxAge = "31536000";
         };
-        rescanInterval = 86400;
+        rescanIntervalS = 86400;
       };
       "geofront" = rec {
         enable = builtins.elem config.networking.hostName devices;
@@ -52,7 +52,7 @@
         versioning.type = "trashcan";
         versioning.params.cleanoutDays = "0"; # never
         ignoreDelete = true;
-        rescanInterval = 86400;
+        rescanIntervalS = 86400;
       };
     };
   };
