@@ -10,7 +10,8 @@
     # preserve lifetime. Run `tlp fullcharge` to temporarily force
     # full charge.
     # https://linrunner.de/tlp/faq/battery.html#how-to-choose-good-battery-charge-thresholds
-    START_CHARGE_THRESH_BAT0 = 60;
+    # https://support.lenovo.com/jp/ja/solutions/ht078208-how-can-i-increase-battery-life-thinkpad-and-lenovo-vbke-series-notebooks
+    START_CHARGE_THRESH_BAT0 = 85;
     STOP_CHARGE_THRESH_BAT0 = 90;
 
     # 100 being the maximum, limit the speed of my CPU to reduce
