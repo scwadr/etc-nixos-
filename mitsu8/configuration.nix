@@ -135,7 +135,7 @@
       ];
 
       # default for windows to use the full screen
-      programs.niri.settings.layout.default-column-width.proportion = lib.mkForce 1;
+      programs.niri.settings.layout.default-column-width.proportion = lib.mkForce 1.0;
     };
 
   environment.systemPackages = [
