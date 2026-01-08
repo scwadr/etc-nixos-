@@ -77,7 +77,6 @@ button:hover {
 #temperature,
 #backlight,
 #network,
-#pulseaudio,
 #wireplumber,
 #custom-media,
 #tray,
@@ -168,23 +167,14 @@ label:focus {
     background-color: rgba(245, 60, 60, 0.2);
 }
 
-#pulseaudio {
+#wireplumber {
     background-color: rgba(241, 196, 15, 0.2);
     color: rgba(255, 255, 255, 0.4);
 }
 
-#pulseaudio.muted {
+#wireplumber.muted {
     background-color: transparent;
     color: #2a5c45;
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
 }
 
 #custom-media {

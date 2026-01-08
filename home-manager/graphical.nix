@@ -215,12 +215,7 @@ in
               rotate = rotationAngle;
             };
             "wireplumber" = {
-              format-icons = {
-                headphone = "ﾍ";
-                hdmi = "H";
-                bluetooth = "ᛒ";
-              };
-              format = "{volume}{icon}";
+              format = "{volume}";
               on-click = "pwvucontrol";
             };
             "mpris" = {
