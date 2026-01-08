@@ -77,6 +77,7 @@ def get_next_event(calendars):
     tomorrow = now_local + timedelta(days=1)
     
     upcoming_events = []
+    current_events = []
     
     # Process each calendar
     for calendar in calendars:
@@ -87,6 +88,7 @@ def get_next_event(calendars):
         
         for event in all_events:
             event_start = event.get('dtstart')
+            event_end = event.get('dtend')
             if event_start:
                 # Convert to datetime if it's a date
                 if hasattr(event_start.dt, 'date'):
@@ -99,8 +101,26 @@ def get_next_event(calendars):
                     start_dt = datetime.combine(event_start.dt, datetime.min.time())
                     start_dt = start_dt.replace(tzinfo=system_tz)
                 
-                if start_dt > now_local:
-                    summary = str(event.get('summary', 'No title'))
+                # Handle end time
+                end_dt = None
+                if event_end:
+                    if hasattr(event_end.dt, 'date'):
+                        end_dt = event_end.dt
+                        if hasattr(end_dt, 'tzinfo') and end_dt.tzinfo is not None:
+                            end_dt = end_dt.astimezone(system_tz)
+                    else:
+                        end_dt = datetime.combine(event_end.dt, datetime.min.time())
+                        end_dt = end_dt.replace(tzinfo=system_tz)
+                
+                summary = str(event.get('summary', 'No title'))
+                
+                # Check if event is current (started but not ended)
+                if start_dt <= now_local and (end_dt is None or end_dt > now_local):
+                    current_events.append({
+                        'start': start_dt,
+                        'summary': summary
+                    })
+                elif start_dt > now_local:
                     upcoming_events.append({
                         'start': start_dt,
                         'summary': summary
@@ -110,6 +130,7 @@ def get_next_event(calendars):
         return {"text": "📅", "tooltip": "No upcoming events", "class": "empty"}
     
     # Sort by start time and get the next one
+    current_events = sorted(current_events, key=lambda x: x['start'])
     upcoming_events = sorted(upcoming_events, key=lambda x: x['start'])
     next_event = upcoming_events[0]
     
@@ -124,6 +145,13 @@ def get_next_event(calendars):
     
     # Format tooltip times - add 24 hours for tomorrow's events
     tooltip_entries = []
+    
+    # Add current events to tooltip
+    for e in current_events:
+        time_str = e['start'].strftime('%H:%M')
+        tooltip_entries.append(f"{time_str} {e['summary']} (current)")
+    
+    # Add upcoming events to tooltip
     for e in upcoming_events:
         if e['start'] < tomorrow:
             if e['start'].date() > now_local.date():
