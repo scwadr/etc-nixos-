@@ -19,5 +19,6 @@
     ./proxy-server.nix
     ./keepassxc.nix
     ./sandbox-dev.nix
+    ./powertop-tune.nix
   ];
 }

@@ -233,4 +233,7 @@
   };
 
   kiyurica.sandbox-dev.enable = true;
+
+  powertop-tune.enable = true;
+  powertop-tune.path = ./powertop-tune.sh;
 }
