@@ -34,7 +34,7 @@
     ../nixpak/packages/org.kde.ark.nix
     ../nixpak/packages/org.mozilla.firefox.nix
     ../nixpak/packages/org.mozilla.Thunderbird.nix
-    # ../nixpak/packages/org.libreoffice.LibreOffice.nix
+    ../nixpak/packages/org.libreoffice.LibreOffice.nix
     ../nixpak/packages/io.github.alainm23.planify.nix
     declarative-flatpak.nixosModules.default
     ../flatpak/com.github.flxzt.rnote.nix
