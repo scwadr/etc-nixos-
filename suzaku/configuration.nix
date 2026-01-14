@@ -33,8 +33,8 @@
     ../nixpak/packages/org.keepassxc.KeePassXC.nix
     ../nixpak/packages/org.kde.ark.nix
     ../nixpak/packages/org.mozilla.firefox.nix
+    ../nixpak/packages/org.libreoffice.LibreOffice.nix
     declarative-flatpak.nixosModules.default
-    ../flatpak/org.libreoffice.LibreOffice.nix
     ../flatpak/com.github.flxzt.rnote.nix
   ];
 
