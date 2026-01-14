@@ -180,11 +180,9 @@
     packages = [
       "elementary:app/io.elementary.capnet-assist//stable"
       "flathub:app/io.github.dzheremi2.lrcmake-gtk//stable"
-      "flathub:app/org.mozilla.firefox//stable"
       "flathub:app/org.gnome.World.Secrets//stable"
       "flathub:app/org.mozilla.Thunderbird//stable"
       "flathub:app/io.github.alainm23.planify//stable"
-      "flathub:app/org.kde.ark//stable"
     ];
     overrides."global" = {
       Context.sockets = [
@@ -197,9 +195,6 @@
         "!host-os"
         "!home"
       ]; # just don't use apps that need this :D
-    };
-    overrides."org.mozilla.firefox" = {
-      Context.devices = [ "dri" ];
     };
   };
 
