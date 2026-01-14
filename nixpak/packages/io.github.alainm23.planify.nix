@@ -19,15 +19,16 @@ let
         imports = with nixpak.nixpakModules; [
           gui-base
         ];
-        app.package = pkgs.kdePackages.ark;
+        app.package = pkgs.planify;
 
-        flatpak.appId = "org.kde.ark";
+        flatpak.appId = "io.github.alainm23.planify";
         fonts.fonts = config.fonts.packages; # https://github.com/nixpak/nixpak/issues/196
 
+        etc.sslCertificates.enable = true;
+
         bubblewrap = {
-          network = false;
+          network = true;
           dieWithParent = true;
-          bind.rw = [ (sloth.concat' sloth.runtimeDir "/doc") ];
           bind.ro = [ "/etc/machine-id" ];
         };
       };
@@ -36,3 +37,4 @@ in
 {
   environment.systemPackages = [ sandboxed.config.env ];
 }
+

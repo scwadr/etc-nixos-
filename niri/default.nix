@@ -306,7 +306,7 @@
                       draw-border-with-background = false;
                     }
                     {
-                      matches = [ { app-id = ''^org\.gnome\.World\.Secrets$''; } ];
+                      matches = [ { app-id = ''^org\.keepassxc\.KeePassXC$''; } ];
                       block-out-from = "screencast";
                     }
                   ];

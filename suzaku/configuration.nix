@@ -33,7 +33,9 @@
     ../nixpak/packages/org.keepassxc.KeePassXC.nix
     ../nixpak/packages/org.kde.ark.nix
     ../nixpak/packages/org.mozilla.firefox.nix
-    ../nixpak/packages/org.libreoffice.LibreOffice.nix
+    ../nixpak/packages/org.mozilla.Thunderbird.nix
+    # ../nixpak/packages/org.libreoffice.LibreOffice.nix
+    ../nixpak/packages/io.github.alainm23.planify.nix
     declarative-flatpak.nixosModules.default
     ../flatpak/com.github.flxzt.rnote.nix
   ];
@@ -170,51 +172,6 @@
   kiyurica.networks.eduroam.enable = true;
 
   kiyurica.gatech-vpn.enable = true;
-
-  services.flatpak = {
-    enable = true;
-    remotes = {
-      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      "elementary" = "https://flatpak.elementary.io/repo.flatpakrepo";
-    };
-    packages = [
-      "elementary:app/io.elementary.capnet-assist//stable"
-      "flathub:app/io.github.dzheremi2.lrcmake-gtk//stable"
-      "flathub:app/org.gnome.World.Secrets//stable"
-      "flathub:app/org.mozilla.Thunderbird//stable"
-      "flathub:app/io.github.alainm23.planify//stable"
-    ];
-    overrides."global" = {
-      Context.sockets = [
-        "!fallback-x11"
-        "!x11"
-      ];
-      Context.filesystems = [
-        "!host"
-        "!host-etc"
-        "!host-os"
-        "!home"
-      ]; # just don't use apps that need this :D
-    };
-  };
-
-  systemd.services.flatpak-permissions = {
-    description = "Set permissions on /var/lib/flatpak";
-    wants = [
-      "manage-flatpaks-auto.service"
-      "manage-flatpaks-activation.service"
-    ];
-    after = [
-      "manage-flatpaks-auto.service"
-      "manage-flatpaks-activation.service"
-    ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/chmod o+rX /var/lib/flatpak";
-      RemainAfterExit = true;
-    };
-  };
 
   hardware.graphics = {
     enable = true;
