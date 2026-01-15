@@ -16,9 +16,12 @@ let
     config =
       { sloth, ... }:
       {
-        imports = with nixpak.nixpakModules; [
-          gui-base
-        ];
+        imports =
+          with nixpak.nixpakModules;
+          [
+            gui-base
+          ]
+          ++ [ ../modules/xdg-home.nix ];
         app.package = pkgs.planify;
 
         flatpak.appId = "io.github.alainm23.planify";
@@ -37,4 +40,3 @@ in
 {
   environment.systemPackages = [ sandboxed.config.env ];
 }
-
