@@ -52,15 +52,17 @@ let
     shopt -s nullglob
 
     iface=""
+    ifindex=""
     for p in "$usb_path":*/net/*; do
       if [ -d "$p" ]; then
         iface="$(basename "$p")"
+        ifindex="$(cat "$p/ifindex")"
         break
       fi
     done
 
     if [ -n "$iface" ]; then
-      echo "quaderno-sync: found existing net interface: $iface" >&2
+      echo "quaderno-sync: found existing net interface: $iface (ifindex=$ifindex)" >&2
     else
       echo "quaderno-sync: no net interface yet; will try enabling RNDIS" >&2
     fi
@@ -91,6 +93,7 @@ let
         for p in "$usb_path":*/net/*; do
           if [ -d "$p" ]; then
             iface="$(basename "$p")"
+            ifindex="$(cat "$p/ifindex")"
             break
           fi
         done
@@ -101,12 +104,13 @@ let
       done
     fi
 
-    if [ -z "$iface" ]; then
+    if [ -z "$iface" ] || [ -z "$ifindex" ]; then
       echo "quaderno-sync: timed out waiting for Quaderno RNDIS interface" >&2
       exit 1
     fi
 
-    echo "quaderno-sync: using net interface: $iface" >&2
+    # Use the numeric ifindex as the IPv6 zone ID to avoid races with interface renaming (usb0 -> enp...).
+    echo "quaderno-sync: using net interface: $iface (ifindex=$ifindex)" >&2
 
     echo "quaderno-sync: resolving mDNS: $MDNS_NAME" >&2
     ip6="$(avahi-resolve -n "$MDNS_NAME" | awk '{print $2}' | head -n1 || true)"
@@ -115,7 +119,7 @@ let
       exit 1
     fi
 
-    addr="[$ip6%$iface]"
+    addr="[$ip6%$ifindex]"
 
     # Forward script args to dptrp1, injecting --addr <addr> if missing.
     if [ "$#" -eq 0 ]; then
