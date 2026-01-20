@@ -40,6 +40,7 @@ let
           network = true;
           sockets.pipewire = true;
           dieWithParent = true;
+          env.GTK_USE_PORTAL = "1";
           bind.rw = [
             (sloth.concat' sloth.runtimeDir "/doc")
             (sloth.concat' sloth.homeDir "/.mozilla") # TODO: figure out how to put this under .var/nixpak-app
