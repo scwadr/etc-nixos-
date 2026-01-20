@@ -141,7 +141,7 @@ let
       gawk
       coreutils
       avahi
-      dptrp1
+      dpt-rp1-py
     ]);
   };
 
