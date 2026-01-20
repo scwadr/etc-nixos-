@@ -191,4 +191,9 @@
 
   powertop-tune.enable = true;
   powertop-tune.path = ./powertop-tune.sh;
+
+  kiyurica.quaderno-sync = {
+    enable = true;
+    autoSync.enable = true;
+  };
 }

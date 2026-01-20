@@ -185,14 +185,24 @@ in
       description = "Seconds to wait for the RNDIS network interface to appear.";
     };
 
+    syncLocalPath = lib.mkOption {
+      type = lib.types.str;
+      default = "${config.services.syncthing.settings.folders.inaba.path}/quaderno";
+      description = "Local path for `dptrp1 sync <local_path>`.";
+    };
+
     dptrp1Args = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "sync" ];
+      default = [
+        "sync"
+        cfg.syncLocalPath
+      ];
       description = "Arguments passed to dptrp1. If --addr is omitted, an appropriate address setting is injected.";
     };
   };
 
   config = lib.mkIf cfg.enable {
+
     environment.systemPackages = [ quaderno-sync-env ];
 
     # User service (runs as whichever user is currently logged in)
