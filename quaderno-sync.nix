@@ -16,8 +16,11 @@ let
     MDNS_NAME="''${MDNS_NAME:-${lib.escapeShellArg cfg.mdnsName}}"
 
     USB_SYS_PATH="''${USB_SYS_PATH:-}"
-    QUADERNO_VID="''${QUADERNO_VID:-${lib.escapeShellArg cfg.autoSync.vendorId}}"
-    QUADERNO_PIDS="''${QUADERNO_PIDS:-${lib.escapeShellArg (lib.concatStringsSep " " cfg.autoSync.productIds)}}"
+
+    # Quaderno Gen 2: 04c5:1656 initially (serial), then 04c5:1657 after RNDIS is enabled.
+    QUADERNO_VID="''${QUADERNO_VID:-04c5}"
+    QUADERNO_INITIAL_PID="''${QUADERNO_INITIAL_PID:-1656}"
+    QUADERNO_RNDIS_PID="''${QUADERNO_RNDIS_PID:-1657}"
 
     usb_path=""
     if [ -n "$USB_SYS_PATH" ]; then
@@ -29,26 +32,18 @@ let
         [ -f "$dev/idVendor" ] || continue
         [ -f "$dev/idProduct" ] || continue
 
-        if [ "$(cat "$dev/idVendor")" != "$QUADERNO_VID" ]; then
-          continue
-        fi
+        [ "$(cat "$dev/idVendor")" = "$QUADERNO_VID" ] || continue
 
         pid="$(cat "$dev/idProduct")"
-        for want in $QUADERNO_PIDS; do
-          if [ "$pid" = "$want" ]; then
-            usb_path="$dev"
-            break
-          fi
-        done
-
-        if [ -n "$usb_path" ]; then
+        if [ "$pid" = "$QUADERNO_INITIAL_PID" ] || [ "$pid" = "$QUADERNO_RNDIS_PID" ]; then
+          usb_path="$dev"
           break
         fi
       done
     fi
 
     if [ -z "$usb_path" ] || [ ! -e "$usb_path/idVendor" ]; then
-      echo "quaderno-sync: failed to locate Quaderno USB device (vid=$QUADERNO_VID pids=$QUADERNO_PIDS)" >&2
+      echo "quaderno-sync: failed to locate Quaderno USB device (vid=$QUADERNO_VID pids=$QUADERNO_INITIAL_PID/$QUADERNO_RNDIS_PID)" >&2
       exit 1
     fi
 
@@ -164,22 +159,6 @@ in
 
     autoSync = {
       enable = lib.mkEnableOption "auto-run quaderno-sync on USB connect";
-
-      vendorId = lib.mkOption {
-        type = lib.types.str;
-        default = "04c5";
-        description = "USB vendor ID of the Quaderno.";
-      };
-
-      productIds = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [
-          "1656" # initial mode (serial)
-          "1657" # RNDIS mode
-        ];
-        description = "USB product IDs of the Quaderno. Gen 2 re-enumerates as 04c5:1656 initially, then 04c5:1657 after RNDIS is enabled.";
-      };
-
     };
 
     serialDevice = lib.mkOption {
@@ -229,20 +208,16 @@ in
       serviceConfig = {
         Type = "oneshot";
         WorkingDirectory = "%h";
-        Environment = [
-          "QUADERNO_VID=${cfg.autoSync.vendorId}"
-          "QUADERNO_PIDS=${lib.concatStringsSep " " cfg.autoSync.productIds}"
-        ];
         ExecStart = "${quaderno-sync-env}/bin/quaderno-sync ${lib.escapeShellArgs cfg.dptrp1Args}";
       };
     };
 
     services.udev.extraRules = lib.mkAfter (
-      lib.optionalString cfg.autoSync.enable (
-        lib.concatMapStringsSep "\n" (pid: ''
-          ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="${cfg.autoSync.vendorId}", ATTR{idProduct}=="${pid}", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="quaderno-sync.service"
-        '') cfg.autoSync.productIds
-      )
+      lib.optionalString cfg.autoSync.enable ''
+        # Quaderno Gen 2: 04c5:1656 initially (serial), then 04c5:1657 after RNDIS is enabled.
+        ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="04c5", ATTR{idProduct}=="1656", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="quaderno-sync.service"
+        ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="04c5", ATTR{idProduct}=="1657", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="quaderno-sync.service"
+      ''
     );
 
     services.avahi.enable = lib.mkDefault true;
