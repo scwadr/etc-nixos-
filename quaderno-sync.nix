@@ -224,7 +224,7 @@ in
 
     services.udev.extraRules = lib.mkAfter (
       lib.optionalString cfg.autoSync.enable ''
-        ACTION=="add", SUBSYSTEM=="usb", DEVTYPE=="usb_device", ATTR{idVendor}=="${cfg.autoSync.vendorId}", ATTR{idProduct}=="${cfg.autoSync.productId}", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="quaderno-sync.service"
+        ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="${cfg.autoSync.vendorId}", ATTR{idProduct}=="${cfg.autoSync.productId}", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="quaderno-sync.service"
       ''
     );
 
