@@ -7,7 +7,6 @@
     ./tailscale.nix
     ./tailscale-cert.nix
     ./autoUpgrade-git.nix
-    ./reimu2.nix
     ./laptop.nix
     ./power-efficiency.nix
     ./displaylink.nix

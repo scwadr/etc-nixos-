@@ -1,9 +1,4 @@
 /secret.nix
 /result
-/reimu-privkey
-/reimu-psk
-/reimu-pubkey
-/reimu-udp2raw-*
-/reimu-ss-key
 .ssh
 .direnv

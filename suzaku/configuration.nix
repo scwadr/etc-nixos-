@@ -141,11 +141,6 @@
 
   programs.light.enable = true;
 
-  kiyurica.networks.reimu = {
-    enable = true;
-    address = "10.42.0.9/32";
-  };
-
   kiyurica.tailscale.enable = true;
   systemd.services.tailscaled-autoconnect.wantedBy = lib.mkForce [ ]; # we may not always be connected to the Internet and therefore the tailnet
 
