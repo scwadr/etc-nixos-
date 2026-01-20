@@ -123,14 +123,20 @@ let
     fi
 
     has_addr=0
+    has_yes=0
     for a in "$@"; do
       case "$a" in
         --addr|--addr=*) has_addr=1 ;;
+        --yes|-y) has_yes=1 ;;
       esac
     done
 
     if [ "$has_addr" -eq 0 ]; then
       set -- "$@" --addr "$addr"
+    fi
+
+    if [ ! -t 0 ] && [ "$has_yes" -eq 0 ]; then
+      set -- "$@" --yes
     fi
 
     echo "quaderno-sync: running: dptrp1 $*" >&2
