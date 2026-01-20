@@ -150,6 +150,11 @@ let
       avahi
       dpt-rp1-py
     ]);
+
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/quaderno-sync --prefix PATH : $out/bin
+    '';
   };
 
 in
