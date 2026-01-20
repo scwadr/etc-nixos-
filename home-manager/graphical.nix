@@ -37,6 +37,11 @@ in
               default = "Result";
               description = "systemd service property to compare";
             };
+            user = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = "Use systemd --user (session bus)";
+            };
             propertyValue = lib.mkOption {
               type = lib.types.str;
               default = "success";
@@ -115,18 +120,22 @@ in
               key,
               propertyName,
               propertyValue,
+              user,
             }:
             let
               escapedServiceName = builtins.replaceStrings [ "." "-" ] [ "_2e" "_2d" ] serviceName;
               script = pkgs.writeShellScriptBin "monitor-service-status.sh" ''
+                SYSTEMCTL="systemctl${lib.optionalString user " --user"}"
+                DBUS_MONITOR="${pkgs.dbus}/bin/dbus-monitor${lib.optionalString user " --session"}${lib.optionalString (!user) " --system"}"
+
                 get_status() {
-                  export LOAD_ERROR="$(systemctl show ${serviceName} --property=LoadError | ${pkgs.coreutils}/bin/cut -d= -f2)"
+                  export LOAD_ERROR="$($SYSTEMCTL show ${serviceName} --property=LoadError | ${pkgs.coreutils}/bin/cut -d= -f2)"
                   if [[ 0 != "$(echo -n "$LOAD_ERROR" | ${pkgs.coreutils}/bin/wc -w)" ]]; then
                     printf '{"text": "✕", "tooltip": %s, "class": "load-error"}' "$(echo -n "${serviceName}: $LOAD_ERROR" | ${pkgs.jq}/bin/jq -Rsa .)"
                     return
                   fi
-                  export RESULT="$(systemctl show ${serviceName} --property=${propertyName} | ${pkgs.coreutils}/bin/cut -d= -f2)"
-                  export DATE="$(${pkgs.coreutils}/bin/date -d "$(systemctl show ${serviceName} --property=ActiveExitTimestamp | ${pkgs.coreutils}/bin/cut -d= -f2)" +'%m-%d %H')"
+                  export RESULT="$($SYSTEMCTL show ${serviceName} --property=${propertyName} | ${pkgs.coreutils}/bin/cut -d= -f2)"
+                  export DATE="$(${pkgs.coreutils}/bin/date -d "$( $SYSTEMCTL show ${serviceName} --property=ActiveExitTimestamp | ${pkgs.coreutils}/bin/cut -d= -f2)" +'%m-%d %H')"
                   if [[ "$RESULT" == "${propertyValue}" ]]; then
                     printf '{"text": "○${key}", "tooltip": "${serviceName} %s", "class": "success"}\n' "$DATE"
                   else
@@ -138,7 +147,7 @@ in
                 get_status
 
                 # Monitor for changes
-                ${pkgs.dbus}/bin/dbus-monitor --system \
+                $DBUS_MONITOR \
                   "type='signal',sender='org.freedesktop.systemd1',path='/org/freedesktop/systemd1/unit/${escapedServiceName}',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged'" \
                   | while read -r line; do
                     get_status

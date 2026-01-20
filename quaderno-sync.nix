@@ -208,6 +208,14 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    home-manager.users.kiyurica.kiyurica.service-status = lib.mkAfter [
+      {
+        serviceName = "quaderno-sync.service";
+        key = "q";
+        user = true;
+      }
+    ];
+
     environment.systemPackages = [ quaderno-sync-env ];
 
     # User service (runs as whichever user is currently logged in)

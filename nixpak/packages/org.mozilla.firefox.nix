@@ -29,6 +29,9 @@ let
           "org.mozilla.firefox_beta.*" = "own";
           "org.mpris.MediaPlayer2.firefox.*" = "own";
           "org.freedesktop.NetworkManager" = "talk";
+
+          # Required for GTK file chooser / XDG document portal integration.
+          "org.freedesktop.portal.*" = "talk";
         };
 
         flatpak.appId = "org.mozilla.firefox";
