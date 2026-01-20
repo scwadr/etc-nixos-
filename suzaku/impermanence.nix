@@ -39,6 +39,7 @@
         ".config/joplin"
         ".config/joplin-desktop"
         ".codex"
+        ".config/dpt"
       ];
     };
   };
