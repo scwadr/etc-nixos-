@@ -53,10 +53,6 @@ let
             ]
             "/etc/machine-id"
             "/run/dbus/system_bus_socket"
-            [
-              "/home/kiyurica/inaba/etc-nixos-main/nixpak/packages/firefox-policies.json"
-              "/app/etc/firefox/distribution/policies.json"
-            ]
           ];
           bind.dev = [ "/dev/shm" ];
         };
