@@ -342,15 +342,6 @@ in
       };
     };
 
-    xdg.autostart = {
-      enable = true;
-      readOnly = true;
-      entries = [
-        "/run/current-system/sw/share/applications/firefox.desktop"
-        "/var/lib/flatpak/exports/share/applications/org.mozilla.Thunderbird.desktop"
-        "/var/lib/flatpak/exports/share/applications/io.github.alainm23.planify.desktop"
-      ];
-    };
 
     # GTK input method configuration for fcitx
     home.file.".gtkrc-2.0".text = ''
