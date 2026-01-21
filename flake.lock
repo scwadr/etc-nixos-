@@ -412,11 +412,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1766568855,
-        "narHash": "sha256-UXVtN77D7pzKmzOotFTStgZBqpOcf8cO95FcupWp4Zo=",
+        "lastModified": 1768736227,
+        "narHash": "sha256-qgGq7CfrYKc3IBYQ7qp0Z/ZXndQVC5Bj0N8HW9mS2rM=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "c5db9569ac9cc70929c268ac461f4003e3e5ca80",
+        "rev": "d447553bcbc6a178618d37e61648b19e744370df",
         "type": "github"
       },
       "original": {
@@ -621,8 +621,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixwrap": "nixwrap",
         "polar-data-collector": "polar-data-collector",
-        "seekback": "seekback",
-        "seekback-server": "seekback-server",
         "sync-pdf-viewer": "sync-pdf-viewer",
         "touhoukou": "touhoukou"
       }
@@ -645,52 +643,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "seekback": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1708321959,
-        "narHash": "sha256-K72PQyfF5zqn/1NWoKsZtZc55B73CaKy8QsGsq2uGhs=",
-        "owner": "nyiyui",
-        "repo": "seekback",
-        "rev": "7fcd1119dd12cbf7e35afc40ea33bc7ed199f7df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nyiyui",
-        "repo": "seekback",
-        "type": "github"
-      }
-    },
-    "seekback-server": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1737128409,
-        "narHash": "sha256-Grlty1qoPL5LHMH/MUwMnPaA/l+c3wtENNPQRAvJPBs=",
-        "owner": "nyiyui",
-        "repo": "seekback-server",
-        "rev": "1bc60975e387a2db2aede583bc6f90b26a7cc592",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nyiyui",
-        "repo": "seekback-server",
         "type": "github"
       }
     },

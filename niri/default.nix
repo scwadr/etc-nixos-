@@ -217,10 +217,6 @@
                         "${pkgs.mako}/bin/makoctl"
                         "restore"
                       ];
-                      "Mod+Shift+S".action.spawn = [
-                        "bash"
-                        "${../home-manager/seekback-signal.sh}"
-                      ];
                       "Mod+Shift+Q" = {
                         action = close-window;
                         allow-inhibiting = false;

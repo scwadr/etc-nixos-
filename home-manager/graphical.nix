@@ -97,16 +97,6 @@ in
   };
 
   config = {
-    i18n.inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-hangul
-        fcitx5-gtk
-      ];
-    };
-
     programs.waybar = {
       # TODO: run systemctl --user restart waybar on activation
       enable = true;
