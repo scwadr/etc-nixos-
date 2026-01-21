@@ -17,9 +17,7 @@
     #../virt.nix
     #../nixpak/packages/org.kde.ark.nix
     ../nixpak/packages/org.mozilla.firefox.nix
-    #../nixpak/packages/org.mozilla.Thunderbird.nix
     # ../nixpak/packages/org.libreoffice.LibreOffice.nix
-    #../nixpak/packages/io.github.alainm23.planify.nix
     ];
 
   # Bootloader.
@@ -117,7 +115,7 @@
 
       kiyurica.services.kanshi = {
         enable = true;
-        builtinDisplay = "Chimei Innolux Corporation 0x14D5 Unknown"; # TODO
+        builtinDisplay = "Chimei Innolux Corporation 0x14D5 Unknown";
       };
       services.kanshi.settings = [
         {
