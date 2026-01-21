@@ -47,6 +47,7 @@ let
           bind.rw = [
             (sloth.concat' sloth.runtimeDir "/doc")
             (sloth.concat' sloth.homeDir "/.mozilla") # TODO: figure out how to put this under .var/nixpak-app
+            (sloth.concat' sloth.homeDir "/Downloads")
           ];
           bind.ro = [
             [
