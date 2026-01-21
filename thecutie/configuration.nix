@@ -117,13 +117,13 @@
 
       kiyurica.services.kanshi = {
         enable = true;
-        builtinDisplay = "Samsung Display Corp. 0x4152 Unknown"; # TODO
+        builtinDisplay = "Chimei Innolux Corporation 0x14D5 Unknown"; # TODO
       };
       services.kanshi.settings = [
         {
-          output.criteria = "Samsung Display Corp. 0x4152 Unknown";
-          output.mode = "2880x1800@60.001Hz";
-          output.scale = 1.5;
+          output.criteria = "Chimei Innolux Corporation 0x14D5 Unknown";
+          output.mode = "1920x1080@60.008Hz";
+          output.scale = 1;
           output.adaptiveSync = true;
         }
       ];
