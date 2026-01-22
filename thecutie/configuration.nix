@@ -86,6 +86,7 @@
     #  wget
     telegram-desktop
     pkgs.wdisplays
+    steam
   ];
 
   environment.shellAliases = {
