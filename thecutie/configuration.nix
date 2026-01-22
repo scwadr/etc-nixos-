@@ -86,6 +86,9 @@
     telegram-desktop
   ];
 
+  environment.shellAliases = {
+    rebuild = "nix build ~/etc-nixos#nixosConfigurations.thecutie.config.system.build.toplevel --out-link result && odas nix-env -p /nix/var/nix/profiles/system --set ./result && doas ./result/bin/switch-to-configuration switch";
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
