@@ -87,6 +87,7 @@
     telegram-desktop
     pkgs.wdisplays
     steam
+    duckstation
   ];
 
   environment.shellAliases = {
