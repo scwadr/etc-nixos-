@@ -150,7 +150,7 @@
       ];
       programs.niri.settings.input.keyboard.xkb = {
         layout = "us,ua";
-        options="grp:alt_shift_toggle";
+        options = pkgs.lib.mkForce "grp:alt_shift_toggle";
       };
       kiyurica.icsUrlPath = config.age.secrets.icsUrlPath.path;
     };
