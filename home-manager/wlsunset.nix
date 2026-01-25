@@ -10,7 +10,7 @@
     longitude = lib.mkDefault "-84.3885";
     temperature = {
       day = lib.mkDefault 6500;
-      night = lib.mkDefault 2000;
+      night = lib.mkDefault 6500;
     };
   };
   home.packages = [
