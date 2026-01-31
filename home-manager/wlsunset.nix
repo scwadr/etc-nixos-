@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   services.wlsunset = {
-    enable = true;
+    enable = false;
     # latitude = lib.mkDefault "35.67"; # Tokyo
     # longitude = lib.mkDefault "139.65";
     # latitude = lib.mkDefault "43.65"; # Toronto
