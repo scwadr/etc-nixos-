@@ -161,6 +161,7 @@
       programs.fish = {
         enable = true;
         shellInit = ''
+          set -gx BROWSER "firefox"
           # >>> mamba initialize >>>
           set -gx MAMBA_EXE "/run/current-system/sw/bin/mamba"
           set -gx MAMBA_ROOT_PREFIX "/home/artems/.conda"
