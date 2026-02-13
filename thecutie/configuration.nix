@@ -158,6 +158,16 @@
         layout = "us,ua";
         options = pkgs.lib.mkForce "grp:alt_shift_toggle";
       };
+      programs.fish = {
+        enable = true;
+        shellInit = ''
+          # >>> mamba initialize >>>
+          set -gx MAMBA_EXE "/run/current-system/sw/bin/mamba"
+          set -gx MAMBA_ROOT_PREFIX "/home/artems/.conda"
+          $MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+          # <<< mamba initialize <<<
+        '';
+      };
       kiyurica.icsUrlPath = config.age.secrets.icsUrlPath.path;
     };
 
@@ -197,7 +207,18 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
-
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    fuse3
+    icu
+    nss
+    openssl
+    curl
+    expat
+    # Add any other libs
+  ];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
