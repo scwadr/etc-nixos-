@@ -88,6 +88,10 @@
     pkgs.wdisplays
     steam
     duckstation
+    google-chrome
+    python3
+    python3Packages.pip
+    mamba-cpp
   ];
 
   environment.shellAliases = {
